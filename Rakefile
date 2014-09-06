@@ -13,6 +13,8 @@ Motion::Project::App.setup do |app|
   app.name = 'ProxyMenu'
   app.version = "1.0"
   app.identifier = "uk.me.digitalfx.ProxyMenu"
+  app.codesign_for_release = false
+  
   app.icon = 'Icon.icns'
   app.info_plist['NSUIElement'] = 1
 end
