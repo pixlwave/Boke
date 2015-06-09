@@ -19,3 +19,4 @@ CVS
 
 # sublime
 .sublime_cache_tasklist
+.repl_history
