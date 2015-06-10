@@ -13,7 +13,8 @@ class AppDelegate
     # set up menubar item
     @statusBar = NSStatusBar.systemStatusBar
     @statusItem = @statusBar.statusItemWithLength(NSVariableStatusItemLength)
-    @statusItem.setImage(NSImage.imageNamed("unknown.png"))
+    @statusItem.setImage(NSImage.imageNamed("unknown"))
+    @statusItem.image.setTemplate(true)   # b&w image so let menubar colour it
     # @statusItem.retain
     @statusItem.highlightMode = true
 
@@ -113,17 +114,19 @@ class AppDelegate
 
     if @proxyEnabled
       if @blockAllEnabled
-        @statusItem.setImage(NSImage.imageNamed("prfw.png"))
+        @statusItem.setImage(NSImage.imageNamed("prfw"))
       else
-        @statusItem.setImage(NSImage.imageNamed("pr.png"))
+        @statusItem.setImage(NSImage.imageNamed("pr"))
       end
     else
       if @blockAllEnabled
-        @statusItem.setImage(NSImage.imageNamed("fw.png"))
+        @statusItem.setImage(NSImage.imageNamed("fw"))
       else
-        @statusItem.setImage(NSImage.imageNamed("off.png"))
+        @statusItem.setImage(NSImage.imageNamed("off"))
       end
     end
+
+    @statusItem.image.setTemplate(true)
 
   end
 
