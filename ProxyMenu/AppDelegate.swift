@@ -10,9 +10,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var proxyEnabled = false
     var firewallEnabled = false
     
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2.0)
+    let statusItem = NSStatusBar.system().statusItem(withLength: -2.0)
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.image = NSImage(named: "unknown")
         statusItem.highlightMode = true
         statusItem.menu = statusMenu
@@ -21,8 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateFirewallState()
     }
     
-    @IBAction func toggleProxy(sender: NSMenuItem) {
-        println("toggle")
+    @IBAction func toggleProxy(_ sender: NSMenuItem) {
         if proxyEnabled {
             launchTask("/usr/sbin/networksetup", arguments: ["-setsocksfirewallproxystate", "Wi-Fi", "off"])
         } else {
@@ -33,13 +32,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateProxyState() {
-        println("update")
         let path = "/usr/sbin/networksetup"
         let arguments = ["-getsocksfirewallproxy", "Wi-Fi"]
 
         if let result = launchReturningTask(path, arguments: arguments) {
             // get first line with 'Enabled: Yes' and then read after 'Enabled: '
-            if result.componentsSeparatedByString("\n")[0].componentsSeparatedByString(": ")[1] == "Yes" {
+            if result.components(separatedBy: "\n")[0].components(separatedBy: ": ")[1] == "Yes" {
                 proxyEnabled = true
                 proxyMenuItem.title = "Disable Proxy"
             } else {
@@ -51,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateIcon()
     }
 
-    @IBAction func toggleFirewall(sender: NSMenuItem) {
+    @IBAction func toggleFirewall(_ sender: NSMenuItem) {
         // sudo ./socketfilterfw --setblockall on
         // sudo ./socketfilterfw --setblockall off
         
@@ -62,7 +60,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         updateFirewallState()
-        println(firewallEnabled)
     }
     
     func updateFirewallState() {
@@ -71,7 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let result = launchReturningTask(path, arguments: arguments) {
             // check if the result include the word 'DISABLED!'
-            if (result as NSString).containsString("DISABLED!") {
+            if (result as NSString).contains("DISABLED!") {
                 firewallEnabled = false
                 firewallMenuItem.title = "Enable Firewall"
             } else {
@@ -99,9 +96,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func launchTask(path: String, arguments: [String]) {
-        println(path)
-        let task = NSTask()
+    func launchTask(_ path: String, arguments: [String]) {
+        let task = Task()
         task.launchPath = path
         task.arguments = arguments
         
@@ -109,25 +105,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         task.waitUntilExit()
     }
     
-    func launchReturningTask(path: String, arguments: [String]) -> String? {
-        let task = NSTask()
+    func launchReturningTask(_ path: String, arguments: [String]) -> String? {
+        let task = Task()
         task.launchPath = path
         task.arguments = arguments
         
-        let outputPipe = NSPipe()
+        let outputPipe = Pipe()
         task.standardOutput = outputPipe
         
         task.launch()
         task.waitUntilExit()
         
         let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        let outputString = NSString(data: outputData, encoding: NSUTF8StringEncoding)
+        let outputString = NSString(data: outputData, encoding: String.Encoding.utf8.rawValue)
         
         return outputString as? String
     }
 
-    @IBAction func quit(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
+    @IBAction func quit(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(self)
     }
     
 }
