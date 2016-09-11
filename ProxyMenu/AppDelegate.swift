@@ -23,9 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func toggleProxy(_ sender: NSMenuItem) {
         if proxyEnabled {
-            launchProcess("/usr/sbin/networksetup", arguments: ["-setsocksfirewallproxystate", "Wi-Fi", "off"])
+            launch(process: "/usr/sbin/networksetup", arguments: ["-setsocksfirewallproxystate", "Wi-Fi", "off"])
         } else {
-            launchProcess("/usr/sbin/networksetup", arguments: ["-setsocksfirewallproxystate", "Wi-Fi", "on"])
+            launch(process: "/usr/sbin/networksetup", arguments: ["-setsocksfirewallproxystate", "Wi-Fi", "on"])
         }
         
         updateProxyState()
@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let path = "/usr/sbin/networksetup"
         let arguments = ["-getsocksfirewallproxy", "Wi-Fi"]
 
-        if let result = launchReturningProcess(path, arguments: arguments) {
+        if let result = launch(returningProcess: path, arguments: arguments) {
             // get first line with 'Enabled: Yes' and then read after 'Enabled: '
             if result.components(separatedBy: "\n")[0].components(separatedBy: ": ")[1] == "Yes" {
                 proxyEnabled = true
@@ -54,9 +54,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // sudo ./socketfilterfw --setblockall off
         
         if firewallEnabled {
-            launchProcess("/usr/bin/osascript", arguments: ["-e", "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off\" with administrator privileges"])
+            launch(process: "/usr/bin/osascript", arguments: ["-e", "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off\" with administrator privileges"])
         } else {
-            launchProcess("/usr/bin/osascript", arguments: ["-e", "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on\" with administrator privileges"])
+            launch(process: "/usr/bin/osascript", arguments: ["-e", "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on\" with administrator privileges"])
         }
         
         updateFirewallState()
@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let path = "/usr/libexec/ApplicationFirewall/socketfilterfw"
         let arguments = ["--getblockall"]
         
-        if let result = launchReturningProcess(path, arguments: arguments) {
+        if let result = launch(returningProcess: path, arguments: arguments) {
             // check if the result include the word 'DISABLED!'
             if (result as NSString).contains("DISABLED!") {
                 firewallEnabled = false
@@ -96,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func launchProcess(_ path: String, arguments: [String]) {
+    func launch(process path: String, arguments: [String]) {
         let process = Process()
         process.launchPath = path
         process.arguments = arguments
@@ -105,7 +105,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         process.waitUntilExit()
     }
     
-    func launchReturningProcess(_ path: String, arguments: [String]) -> String? {
+    func launch(returningProcess path: String, arguments: [String]) -> String? {
         let process = Process()
         process.launchPath = path
         process.arguments = arguments
