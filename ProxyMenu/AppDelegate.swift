@@ -10,10 +10,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var proxyEnabled = false
     var firewallEnabled = false
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: -2.0)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -2.0)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.image = NSImage(named: "unknown")
+        statusItem.image = #imageLiteral(resourceName: "unknown")
         statusItem.highlightMode = true
         statusItem.menu = statusMenu
         
@@ -83,15 +83,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func updateIcon() {
         if proxyEnabled {
             if firewallEnabled {
-                statusItem.image = NSImage(named: "prfw")
+                statusItem.image = #imageLiteral(resourceName: "prfw")
             } else {
-                statusItem.image = NSImage(named: "pr")
+                statusItem.image = #imageLiteral(resourceName: "pr")
             }
         } else {
             if firewallEnabled {
-                statusItem.image = NSImage(named: "fw")
+                statusItem.image = #imageLiteral(resourceName: "fw")
             } else {
-                statusItem.image = NSImage(named: "off")
+                statusItem.image = #imageLiteral(resourceName: "off")
             }
         }
     }
@@ -119,11 +119,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
         let outputString = NSString(data: outputData, encoding: String.Encoding.utf8.rawValue)
         
-        return outputString as? String
+        return outputString as String?
     }
 
     @IBAction func quit(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
 }
