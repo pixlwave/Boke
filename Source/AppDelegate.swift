@@ -3,7 +3,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var timer: Timer!
+    var timer: Timer?
     
     let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -19,9 +19,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.delegate = self
         NSUserNotificationCenter.default.delegate = self
         
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
-            System.update()
-        }
+        // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(stop), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(start), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
+        
+        timer = System.newTimer()
+    }
+    
+    @objc func start() {
+        guard timer == nil else { return }
+        timer = System.newTimer()
+    }
+    
+    @objc func stop() {
+        timer?.invalidate()
+        timer = nil
     }
     
     @IBAction func showPreferencesWindow(_ sender: Any) {

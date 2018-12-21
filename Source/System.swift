@@ -3,30 +3,25 @@ import Foundation
 class System {
     
     static var maxTimeAwake = TimeInterval(3600)
+    static var updateFrequency = TimeInterval(60)
     
-    static var screenWakeTime: Date?
+    static var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
+    static var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
+    static var screenWakeDate: Date?
     
-    public static func bootTime() -> Date? {
-        return Sysctl.date(for: "kern.boottime")
+    static func timeAwake() -> TimeInterval {
+        var dates = [Date]()
+        
+        if let bootDate = System.bootDate { dates.append(bootDate) }
+        if let wakeDate = System.wakeDate { dates.append(wakeDate) }
+        
+        dates.sort()
+        
+        guard let mostRecentDate = dates.last else { fatalError("Unable to read times!")}
+        return Date().timeIntervalSince(mostRecentDate)
     }
     
-    public static func wakeTime() -> Date? {
-        return Sysctl.date(for: "kern.waketime")
-    }
-    
-    public static func timeAwake() -> TimeInterval {
-        var times = [Date]()
-        
-        if let bootTime = System.bootTime() { times.append(bootTime) }
-        if let wakeTime = System.wakeTime() { times.append(wakeTime) }
-        
-        times.sort()
-        
-        guard let time = times.last else { fatalError("Unable to read times!")}
-        return Date().timeIntervalSince(time)
-    }
-    
-    public static func timeRemaining() -> TimeInterval {
+    static func timeRemaining() -> TimeInterval {
         return maxTimeAwake - timeAwake()
     }
     
@@ -43,6 +38,12 @@ class System {
             NSUserNotificationCenter.default.deliver(notification)
         } else {
             NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+        }
+    }
+    
+    static func newTimer() -> Timer {
+        return Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
+            System.update()
         }
     }
 
