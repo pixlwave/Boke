@@ -2,7 +2,7 @@ import Foundation
 
 class System {
     
-    static var maxTimeAwake = 3600.0
+    static var maxTimeAwake = TimeInterval(3600)
     
     static var screenWakeTime: Date?
     
@@ -14,7 +14,7 @@ class System {
         return Sysctl.date(for: "kern.waketime")
     }
     
-    static func update() {
+    public static func timeAwake() -> TimeInterval {
         var times = [Date]()
         
         if let bootTime = System.bootTime() { times.append(bootTime) }
@@ -23,12 +23,20 @@ class System {
         times.sort()
         
         guard let time = times.last else { fatalError("Unable to read times!")}
-        let timeAwake = Date().timeIntervalSince(time)
+        return Date().timeIntervalSince(time)
+    }
+    
+    public static func timeRemaining() -> TimeInterval {
+        return maxTimeAwake - timeAwake()
+    }
+    
+    static func update() {
+        let time = timeAwake()
         
-        if timeAwake > maxTimeAwake {
+        if time > maxTimeAwake {
             let notification = NSUserNotification()
             notification.title = "Take a break!"
-            notification.informativeText = "You've been working for \(Int(timeAwake / 60)) minutes without a break"
+            notification.informativeText = "You've been working for \(time.formatted ?? "too long") without a break"
             notification.soundName = NSUserNotificationDefaultSoundName
             notification.hasActionButton = false
             NSUserNotificationCenter.default.removeAllDeliveredNotifications()

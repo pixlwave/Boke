@@ -13,6 +13,7 @@
 		A5C1DE7B21CD3E7500F783C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7921CD3E7500F783C0 /* Main.storyboard */; };
 		A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */; };
 		A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE8521CD3F1F00F783C0 /* System.swift */; };
+		A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDD65921CD80540010AEA9 /* Extends.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		A5C1DE7D21CD3E7500F783C0 /* Up_Time.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Up_Time.entitlements; sourceTree = "<group>"; };
 		A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlSysctl.swift; sourceTree = "<group>"; };
 		A5C1DE8521CD3F1F00F783C0 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		A5CDD65921CD80540010AEA9 /* Extends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extends.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */,
 				A5C1DE8521CD3F1F00F783C0 /* System.swift */,
 				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
+				A5CDD65921CD80540010AEA9 /* Extends.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */,
 				A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */,
+				A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */,
 				A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */,
 				A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */,
 			);

@@ -679,12 +679,17 @@
                         <outlet property="menu" destination="sT5-cH-kvB" id="KkV-MP-frN"/>
                     </connections>
                 </customObject>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="sT5-cH-kvB">
                     <items>
-                        <menuItem title="Preferences" id="zdH-6I-Lz9">
+                        <menuItem title="0 minutes remaining" id="zdH-6I-Lz9">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Preferences" id="lGM-tz-AtI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="Wkh-4m-XSu"/>
+                                <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="fg8-YW-glP"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Quit" id="GP4-Td-Q4e">
@@ -695,8 +700,6 @@
                         </menuItem>
                     </items>
                 </menu>
-                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
