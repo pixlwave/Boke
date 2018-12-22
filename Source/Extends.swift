@@ -5,8 +5,8 @@ extension Formatter {
     static let timeInterval: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
-        formatter.maximumUnitCount = 1
-        formatter.allowedUnits = [.day, .hour, .minute]
+        formatter.maximumUnitCount = 2
+        formatter.allowedUnits = [.hour, .minute]
         return formatter
     }()
     
