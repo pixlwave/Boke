@@ -7,6 +7,7 @@ class Engine {
     var timer: Timer?
     
     var maxTimeAwake = TimeInterval(3600)
+    var screenSleepResetTime = TimeInterval(120)
     var updateFrequency = TimeInterval(60)
     
     var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
@@ -16,21 +17,29 @@ class Engine {
     
     private init() {
         // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(stop), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(start), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidSleep), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
         
         timer = newTimer()
     }
     
     
-    @objc func start() {
-        guard timer == nil else { return }
-        timer = newTimer()
+    @objc func screenDidWake() {
+        if timer == nil { timer = newTimer() }
+        
+        if let screenSleepDate = screenSleepDate {
+            let now = Date()
+            let screenSleepTime = now.timeIntervalSince(screenSleepDate)
+            if screenSleepTime > screenSleepResetTime { screenWakeDate = now }
+            self.screenSleepDate = nil
+        }
     }
     
-    @objc func stop() {
+    @objc func screenDidSleep() {
         timer?.invalidate()
         timer = nil
+        
+        screenSleepDate = Date()
     }
     
     func timeAwake() -> TimeInterval {
@@ -38,6 +47,7 @@ class Engine {
         
         if let bootDate = bootDate { dates.append(bootDate) }
         if let wakeDate = wakeDate { dates.append(wakeDate) }
+        if let screenWakeDate = screenWakeDate { dates.append(screenWakeDate) }
         
         dates.sort()
         
