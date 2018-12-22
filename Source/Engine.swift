@@ -1,19 +1,43 @@
 import Foundation
 
-class System {
+class Engine {
     
-    static var maxTimeAwake = TimeInterval(3600)
-    static var updateFrequency = TimeInterval(60)
+    static let client = Engine()
     
-    static var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
-    static var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
-    static var screenWakeDate: Date?
+    var timer: Timer?
     
-    static func timeAwake() -> TimeInterval {
+    var maxTimeAwake = TimeInterval(3600)
+    var updateFrequency = TimeInterval(60)
+    
+    var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
+    var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
+    var screenSleepDate: Date?
+    var screenWakeDate: Date?
+    
+    private init() {
+        // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(stop), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(start), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
+        
+        timer = newTimer()
+    }
+    
+    
+    @objc func start() {
+        guard timer == nil else { return }
+        timer = newTimer()
+    }
+    
+    @objc func stop() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func timeAwake() -> TimeInterval {
         var dates = [Date]()
         
-        if let bootDate = System.bootDate { dates.append(bootDate) }
-        if let wakeDate = System.wakeDate { dates.append(wakeDate) }
+        if let bootDate = bootDate { dates.append(bootDate) }
+        if let wakeDate = wakeDate { dates.append(wakeDate) }
         
         dates.sort()
         
@@ -21,11 +45,11 @@ class System {
         return Date().timeIntervalSince(mostRecentDate)
     }
     
-    static func timeRemaining() -> TimeInterval {
+    func timeRemaining() -> TimeInterval {
         return maxTimeAwake - timeAwake()
     }
     
-    static func update() {
+    func update() {
         let time = timeAwake()
         
         if time > maxTimeAwake {
@@ -41,9 +65,9 @@ class System {
         }
     }
     
-    static func newTimer() -> Timer {
+    func newTimer() -> Timer {
         return Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
-            System.update()
+            self.update()
         }
     }
 

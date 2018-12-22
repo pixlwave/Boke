@@ -3,7 +3,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var timer: Timer?
+    var engine = Engine.client
     
     let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -18,22 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         menu.delegate = self
         NSUserNotificationCenter.default.delegate = self
-        
-        // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(stop), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(start), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
-        
-        timer = System.newTimer()
-    }
-    
-    @objc func start() {
-        guard timer == nil else { return }
-        timer = System.newTimer()
-    }
-    
-    @objc func stop() {
-        timer?.invalidate()
-        timer = nil
     }
     
     @IBAction func showPreferencesWindow(_ sender: Any) {
@@ -52,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
-        let timeRemaining = System.timeRemaining()
+        let timeRemaining = engine.timeRemaining()
         
         if timeRemaining > 0 {
             menu.item(at: 0)?.title = "\(timeRemaining.formatted ?? "Some time") remaining"
