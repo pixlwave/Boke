@@ -32,7 +32,7 @@ class System {
             let notification = NSUserNotification()
             notification.title = "Take a break!"
             notification.informativeText = "You've been working for \(time.formatted ?? "too long") without a break"
-            // notification.soundName = NSUserNotificationDefaultSoundName
+            notification.soundName = nil
             notification.hasActionButton = false
             NSUserNotificationCenter.default.removeAllDeliveredNotifications()
             NSUserNotificationCenter.default.deliver(notification)
