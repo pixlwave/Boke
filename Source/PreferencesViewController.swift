@@ -29,6 +29,11 @@ class PreferencesViewController: NSViewController {
         """
     }
     
+    override func viewDidDisappear() {
+        guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.preferencesWindowDidClose()
+    }
+    
     @IBAction func workTimeChanged(_ sender: NSSlider) {
         engine.alertTime = sender.doubleValue.rounded() * 300
         workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
