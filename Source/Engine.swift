@@ -5,10 +5,14 @@ class Engine {
     static let client = Engine()
     
     var timer: Timer?
-    
-    var maxTimeAwake = TimeInterval(3600)
-    var screenSleepResetTime = TimeInterval(120)
     var updateFrequency = TimeInterval(60)
+    
+    var maxTimeAwake = UserDefaults.standard.object(forKey: "workTime") as? Double ?? TimeInterval(3600) {
+        didSet { UserDefaults.standard.set(maxTimeAwake, forKey: "workTime") }
+    }
+    var screenSleepResetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
+        didSet { UserDefaults.standard.set(screenSleepResetTime, forKey: "resetTime") }
+    }
     
     var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
     var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
