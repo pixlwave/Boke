@@ -24,8 +24,8 @@ class PreferencesViewController: NSViewController {
         statusLabel.stringValue = """
         Boot date: \(engine.bootDate?.description ?? "nil")
         Wake date: \(engine.wakeDate?.description ?? "nil")
-        Screen sleep date: \(engine.screenSleepDate?.description ?? "nil")
-        Screen wake date: \(engine.screenWakeDate?.description ?? "nil")
+        Unlock date: \(engine.screenWakeDate?.description ?? "nil")
+        Time awake: \(engine.timeAwake().formatted ?? "Error")
         """
     }
     

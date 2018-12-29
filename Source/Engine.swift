@@ -27,6 +27,12 @@ class Engine {
         timer = newTimer()
     }
     
+    @objc func screenDidSleep() {
+        timer?.invalidate()
+        timer = nil
+        
+        screenSleepDate = Date()
+    }
     
     @objc func screenDidWake() {
         if timer == nil { timer = newTimer() }
@@ -37,13 +43,6 @@ class Engine {
             if screenSleepTime > resetTime { screenWakeDate = now }
             self.screenSleepDate = nil
         }
-    }
-    
-    @objc func screenDidSleep() {
-        timer?.invalidate()
-        timer = nil
-        
-        screenSleepDate = Date()
     }
     
     func timeAwake() -> TimeInterval {
@@ -68,8 +67,8 @@ class Engine {
         
         if time > alertTime {
             let notification = NSUserNotification()
-            notification.title = "Take a break!"
-            notification.informativeText = "You've been working for \(time.formatted ?? "too long") without a break"
+            notification.title = time.formatted
+            notification.informativeText = "of screen time"
             notification.soundName = nil
             notification.hasActionButton = false
             NSUserNotificationCenter.default.removeAllDeliveredNotifications()

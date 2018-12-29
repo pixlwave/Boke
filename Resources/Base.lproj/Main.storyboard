@@ -733,16 +733,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6RW-ug-Z52">
-                                <rect key="frame" x="58" y="200" width="66" height="17"/>
+                                <rect key="frame" x="60" y="200" width="64" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Work time" id="xs8-tX-p2v">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Alert time" id="xs8-tX-p2v">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-Gb-fNy">
-                                <rect key="frame" x="356" y="200" width="64" height="17"/>
+                                <rect key="frame" x="356" y="200" width="106" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="0 minutes" id="9D0-LR-Txf">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -787,7 +787,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvK-Nm-hIn">
-                                <rect key="frame" x="356" y="174" width="64" height="17"/>
+                                <rect key="frame" x="356" y="174" width="106" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="0 minutes" id="8Tp-XM-ltk">
                                     <font key="font" usesAppearanceFont="YES"/>
