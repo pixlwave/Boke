@@ -29,6 +29,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.arrangeInFront(self)
     }
     
+    func preferencesWindowDidClose() {
+        preferencesWindow = nil
+    }
+    
 }
 
 

@@ -11,25 +11,33 @@ class PreferencesViewController: NSViewController {
     
     @IBOutlet weak var soundsCheckbox: NSButton!
     
+    @IBOutlet weak var statusLabel: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workTimeSlider.doubleValue = engine.maxTimeAwake / 60
-        workTimeLabel.stringValue = engine.maxTimeAwake.formatted ?? ""
-        resetTimeSlider.doubleValue = engine.screenSleepResetTime / 60
-        resetTimeLabel.stringValue = engine.screenSleepResetTime.formatted ?? ""
+        workTimeSlider.doubleValue = engine.alertTime / 300
+        workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
+        resetTimeSlider.doubleValue = engine.resetTime / 60
+        resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
         
+        statusLabel.stringValue = """
+        Boot date: \(engine.bootDate?.description ?? "nil")
+        Wake date: \(engine.wakeDate?.description ?? "nil")
+        Screen sleep date: \(engine.screenSleepDate?.description ?? "nil")
+        Screen wake date: \(engine.screenWakeDate?.description ?? "nil")
+        """
     }
+    
     @IBAction func workTimeChanged(_ sender: NSSlider) {
-        let time = sender.doubleValue * 60
-        engine.maxTimeAwake = time.rounded()
-        workTimeLabel.stringValue = engine.maxTimeAwake.formatted ?? ""
+        engine.alertTime = sender.doubleValue.rounded() * 300
+        workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
     }
     
     @IBAction func resetTimeChanged(_ sender: NSSlider) {
         let time = sender.doubleValue * 60
-        engine.screenSleepResetTime = time.rounded()
-        resetTimeLabel.stringValue = engine.screenSleepResetTime.formatted ?? ""
+        engine.resetTime = time.rounded()
+        resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
     }
     
     @IBAction func toggleSounds(_ sender: NSButton) {

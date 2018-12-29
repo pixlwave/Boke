@@ -7,11 +7,11 @@ class Engine {
     var timer: Timer?
     var updateFrequency = TimeInterval(60)
     
-    var maxTimeAwake = UserDefaults.standard.object(forKey: "workTime") as? Double ?? TimeInterval(3600) {
-        didSet { UserDefaults.standard.set(maxTimeAwake, forKey: "workTime") }
+    var alertTime = UserDefaults.standard.object(forKey: "alertTime") as? Double ?? TimeInterval(3600) {
+        didSet { UserDefaults.standard.set(alertTime, forKey: "alertTime") }
     }
-    var screenSleepResetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
-        didSet { UserDefaults.standard.set(screenSleepResetTime, forKey: "resetTime") }
+    var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
+        didSet { UserDefaults.standard.set(resetTime, forKey: "resetTime") }
     }
     
     var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
@@ -34,7 +34,7 @@ class Engine {
         if let screenSleepDate = screenSleepDate {
             let now = Date()
             let screenSleepTime = now.timeIntervalSince(screenSleepDate)
-            if screenSleepTime > screenSleepResetTime { screenWakeDate = now }
+            if screenSleepTime > resetTime { screenWakeDate = now }
             self.screenSleepDate = nil
         }
     }
@@ -60,13 +60,13 @@ class Engine {
     }
     
     func timeRemaining() -> TimeInterval {
-        return maxTimeAwake - timeAwake()
+        return alertTime - timeAwake()
     }
     
     func update() {
         let time = timeAwake()
         
-        if time > maxTimeAwake {
+        if time > alertTime {
             let notification = NSUserNotification()
             notification.title = "Take a break!"
             notification.informativeText = "You've been working for \(time.formatted ?? "too long") without a break"
