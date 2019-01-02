@@ -13,6 +13,9 @@ class Engine {
     var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
         didSet { UserDefaults.standard.set(resetTime, forKey: "resetTime") }
     }
+    var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
+        didSet { UserDefaults.standard.set(notificationFrequency, forKey: "notificationFrequency") }
+    }
     
     var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
     var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
@@ -66,16 +69,23 @@ class Engine {
         let time = timeAwake()
         
         if time > alertTime {
-            let notification = NSUserNotification()
-            notification.title = time.formatted
-            notification.informativeText = "of screen time"
-            notification.soundName = nil
-            notification.hasActionButton = false
-            NSUserNotificationCenter.default.removeAllDeliveredNotifications()
-            NSUserNotificationCenter.default.deliver(notification)
+            let minutesPast = Int((time - alertTime) / 60)
+            if minutesPast % notificationFrequency == 0 {
+                deliverNotification(for: time)
+            }
         } else {
             NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         }
+    }
+    
+    func deliverNotification(for time: TimeInterval) {
+        let notification = NSUserNotification()
+        notification.title = time.formatted
+        notification.informativeText = "of screen time"
+        notification.soundName = nil
+        notification.hasActionButton = false
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+        NSUserNotificationCenter.default.deliver(notification)
     }
     
     func newTimer() -> Timer {

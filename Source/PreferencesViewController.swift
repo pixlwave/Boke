@@ -8,6 +8,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var workTimeLabel: NSTextField!
     @IBOutlet weak var resetTimeSlider: NSSlider!
     @IBOutlet weak var resetTimeLabel: NSTextField!
+    @IBOutlet weak var notificationFrequencyControl: NSSegmentedControl!
     
     @IBOutlet weak var soundsCheckbox: NSButton!
     
@@ -20,6 +21,7 @@ class PreferencesViewController: NSViewController {
         workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
         resetTimeSlider.doubleValue = engine.resetTime / 60
         resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
+        notificationFrequencyControl.selectSegment(withTag: engine.notificationFrequency)
         
         statusLabel.stringValue = """
         Boot date: \(engine.bootDate?.description ?? "nil")
@@ -43,6 +45,10 @@ class PreferencesViewController: NSViewController {
         let time = sender.doubleValue * 60
         engine.resetTime = time.rounded()
         resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
+    }
+    
+    @IBAction func notificationFrequencyChanged(_ sender: NSSegmentedControl) {
+        engine.notificationFrequency = sender.tag(forSegment: sender.selectedSegment)
     }
     
     @IBAction func toggleSounds(_ sender: NSButton) {

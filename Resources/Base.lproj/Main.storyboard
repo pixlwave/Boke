@@ -733,7 +733,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6RW-ug-Z52">
-                                <rect key="frame" x="60" y="200" width="64" height="17"/>
+                                <rect key="frame" x="63" y="226" width="64" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Alert time" id="xs8-tX-p2v">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -742,7 +742,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-Gb-fNy">
-                                <rect key="frame" x="356" y="200" width="106" height="17"/>
+                                <rect key="frame" x="359" y="226" width="106" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="0 minutes" id="9D0-LR-Txf">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -750,16 +750,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODZ-di-Yit">
-                                <rect key="frame" x="128" y="198" width="224" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="24" doubleValue="12.5" tickMarkPosition="above" sliderType="linear" id="EyY-Vf-nNF"/>
-                                <connections>
-                                    <action selector="workTimeChanged:" target="XfG-lQ-9wD" id="rlj-nl-Xb2"/>
-                                </connections>
-                            </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6P-8X-sPd">
-                                <rect key="frame" x="13" y="174" width="111" height="17"/>
+                                <rect key="frame" x="16" y="200" width="111" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Screen reset time" id="Bm1-5y-Apc">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -768,7 +760,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g37-SI-NvN">
-                                <rect key="frame" x="128" y="172" width="224" height="19"/>
+                                <rect key="frame" x="131" y="198" width="224" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="20" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="fgx-Du-t8X"/>
                                 <connections>
@@ -776,7 +768,7 @@
                                 </connections>
                             </slider>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mv3-Jr-KCn">
-                                <rect key="frame" x="206" y="137" width="68" height="18"/>
+                                <rect key="frame" x="206" y="118" width="68" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Sounds" bezelStyle="regularSquare" imagePosition="left" inset="2" id="oth-wg-xoV">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -787,7 +779,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvK-Nm-hIn">
-                                <rect key="frame" x="356" y="174" width="106" height="17"/>
+                                <rect key="frame" x="359" y="200" width="106" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="0 minutes" id="8Tp-XM-ltk">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -804,9 +796,42 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODZ-di-Yit">
+                                <rect key="frame" x="131" y="224" width="224" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="24" doubleValue="12.5" tickMarkPosition="above" sliderType="linear" id="EyY-Vf-nNF"/>
+                                <connections>
+                                    <action selector="workTimeChanged:" target="XfG-lQ-9wD" id="rlj-nl-Xb2"/>
+                                </connections>
+                            </slider>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opT-Gw-ryY">
+                                <rect key="frame" x="159" y="154" width="257" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="6i7-8u-6q2">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="1 minute" tag="1"/>
+                                        <segment label="5 minutes" selected="YES" tag="5"/>
+                                        <segment label="10 minutes" tag="10"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="notificationFrequencyChanged:" target="XfG-lQ-9wD" id="HJO-66-tab"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNd-cG-2wR">
+                                <rect key="frame" x="16" y="159" width="139" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Notification frequency" id="Tjj-eF-HQt">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="notificationFrequencyControl" destination="opT-Gw-ryY" id="kwC-Wj-5Cj"/>
                         <outlet property="resetTimeLabel" destination="fvK-Nm-hIn" id="Hmj-65-0zs"/>
                         <outlet property="resetTimeSlider" destination="g37-SI-NvN" id="8aK-Tt-bIg"/>
                         <outlet property="soundsCheckbox" destination="Mv3-Jr-KCn" id="zWH-Xr-c82"/>
