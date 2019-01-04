@@ -43,7 +43,10 @@ class Engine {
         if let screenSleepDate = screenSleepDate {
             let now = Date()
             let screenSleepTime = now.timeIntervalSince(screenSleepDate)
-            if screenSleepTime > resetTime { screenWakeDate = now }
+            if screenSleepTime > resetTime {
+                screenWakeDate = now
+                removeAllNotifications()
+            }
             self.screenSleepDate = nil
         }
     }
@@ -74,7 +77,7 @@ class Engine {
                 deliverNotification(for: time)
             }
         } else {
-            NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+            removeAllNotifications()
         }
     }
     
@@ -86,6 +89,10 @@ class Engine {
         notification.hasActionButton = false
         NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func removeAllNotifications() {
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
     }
     
     func newTimer() -> Timer {
