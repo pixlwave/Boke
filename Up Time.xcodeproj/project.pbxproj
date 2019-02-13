@@ -43,7 +43,7 @@
 		A5C1DE6721CD3E7400F783C0 = {
 			isa = PBXGroup;
 			children = (
-				A5C1DE7221CD3E7400F783C0 /* Source */,
+				A5C1DE7221CD3E7400F783C0 /* Sources */,
 				A5C1DE8721CD69B000F783C0 /* Resources */,
 				A5C1DE7121CD3E7400F783C0 /* Products */,
 			);
@@ -57,7 +57,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A5C1DE7221CD3E7400F783C0 /* Source */ = {
+		A5C1DE7221CD3E7400F783C0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */,
@@ -66,7 +66,7 @@
 				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
 				A5CDD65921CD80540010AEA9 /* Extends.swift */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		A5C1DE8721CD69B000F783C0 /* Resources */ = {
