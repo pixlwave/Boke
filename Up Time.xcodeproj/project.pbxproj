@@ -112,6 +112,7 @@
 				TargetAttributes = {
 					A5C1DE6F21CD3E7400F783C0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -302,7 +303,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.pixlwave.Up-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -321,7 +322,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.pixlwave.Up-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
