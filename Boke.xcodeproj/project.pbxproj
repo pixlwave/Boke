@@ -17,15 +17,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A5C1DE7021CD3E7400F783C0 /* Up Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Up Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5C1DE7A21CD3E7500F783C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5C1DE7C21CD3E7500F783C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5C1DE7D21CD3E7500F783C0 /* Up_Time.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Up_Time.entitlements; sourceTree = "<group>"; };
 		A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlSysctl.swift; sourceTree = "<group>"; };
 		A5C1DE8521CD3F1F00F783C0 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		A5C6384B227DE3FF006E24EC /* Boke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Boke.entitlements; sourceTree = "<group>"; };
 		A5CDD65921CD80540010AEA9 /* Extends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extends.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 		A5C1DE7121CD3E7400F783C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5C1DE7021CD3E7400F783C0 /* Up Time.app */,
+				A5C1DE7021CD3E7400F783C0 /* Boke.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 				A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */,
 				A5C1DE7921CD3E7500F783C0 /* Main.storyboard */,
 				A5C1DE7C21CD3E7500F783C0 /* Info.plist */,
-				A5C1DE7D21CD3E7500F783C0 /* Up_Time.entitlements */,
+				A5C6384B227DE3FF006E24EC /* Boke.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -83,9 +83,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A5C1DE6F21CD3E7400F783C0 /* Up Time */ = {
+		A5C1DE6F21CD3E7400F783C0 /* Boke */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A5C1DE8021CD3E7500F783C0 /* Build configuration list for PBXNativeTarget "Up Time" */;
+			buildConfigurationList = A5C1DE8021CD3E7500F783C0 /* Build configuration list for PBXNativeTarget "Boke" */;
 			buildPhases = (
 				A5C1DE6C21CD3E7400F783C0 /* Sources */,
 				A5C1DE6D21CD3E7400F783C0 /* Frameworks */,
@@ -95,9 +95,9 @@
 			);
 			dependencies = (
 			);
-			name = "Up Time";
+			name = Boke;
 			productName = "Up Time";
-			productReference = A5C1DE7021CD3E7400F783C0 /* Up Time.app */;
+			productReference = A5C1DE7021CD3E7400F783C0 /* Boke.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,10 +113,15 @@
 					A5C1DE6F21CD3E7400F783C0 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = A5C1DE6B21CD3E7400F783C0 /* Build configuration list for PBXProject "Up Time" */;
+			buildConfigurationList = A5C1DE6B21CD3E7400F783C0 /* Build configuration list for PBXProject "Boke" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -129,7 +134,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A5C1DE6F21CD3E7400F783C0 /* Up Time */,
+				A5C1DE6F21CD3E7400F783C0 /* Boke */,
 			);
 		};
 /* End PBXProject section */
@@ -292,7 +297,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Resources/Up_Time.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NU8A5Y875P;
@@ -301,7 +306,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.pixlwave.Up-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.pixlwave.Boke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -311,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Resources/Up_Time.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NU8A5Y875P;
@@ -320,7 +325,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.pixlwave.Up-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.pixlwave.Boke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -329,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A5C1DE6B21CD3E7400F783C0 /* Build configuration list for PBXProject "Up Time" */ = {
+		A5C1DE6B21CD3E7400F783C0 /* Build configuration list for PBXProject "Boke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A5C1DE7E21CD3E7500F783C0 /* Debug */,
@@ -338,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A5C1DE8021CD3E7500F783C0 /* Build configuration list for PBXNativeTarget "Up Time" */ = {
+		A5C1DE8021CD3E7500F783C0 /* Build configuration list for PBXNativeTarget "Boke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A5C1DE8121CD3E7500F783C0 /* Debug */,
