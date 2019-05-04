@@ -23,12 +23,13 @@ class PreferencesViewController: NSViewController {
         resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
         notificationFrequencyControl.selectSegment(withTag: engine.notificationFrequency)
         
-        statusLabel.stringValue = """
-        Boot date: \(engine.bootDate?.description ?? "nil")
-        Wake date: \(engine.wakeDate?.description ?? "nil")
-        Unlock date: \(engine.screenWakeDate?.description ?? "nil")
-        Time awake: \(engine.timeAwake().formatted ?? "Error")
-        """
+        statusLabel.stringValue =
+            """
+            Boot date: \(engine.bootDate?.description ?? "nil")
+            Wake date: \(engine.wakeDate?.description ?? "nil")
+            Unlock date: \(engine.screenWakeDate?.description ?? "nil")
+            Time awake: \(engine.timeAwake().formatted ?? "Error")
+            """
     }
     
     override func viewDidDisappear() {
