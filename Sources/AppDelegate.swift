@@ -45,7 +45,7 @@ extension AppDelegate: NSMenuDelegate {
         if timeRemaining > 0 {
             menu.item(at: 0)?.title = "\(timeRemaining.formatted ?? "Some time") remaining"
         } else {
-            menu.item(at: 0)?.title = "Time's up!"
+            menu.item(at: 0)?.title = "\(abs(timeRemaining).formatted ?? "Some time") over"
         }
     }
     
