@@ -23,6 +23,8 @@ class PreferencesViewController: NSViewController {
         resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
         notificationFrequencyControl.selectSegment(withTag: engine.notificationFrequency)
         
+        soundsCheckbox.state = engine.makesSound ? .on : .off
+        
         statusLabel.stringValue =
             """
             Boot date: \(engine.bootDate?.description ?? "nil")
@@ -53,7 +55,7 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func toggleSounds(_ sender: NSButton) {
-        //
+        engine.makesSound = sender.state == .on
     }
     
 }

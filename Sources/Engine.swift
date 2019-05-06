@@ -16,6 +16,9 @@ class Engine {
     var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
         didSet { UserDefaults.standard.set(notificationFrequency, forKey: "notificationFrequency") }
     }
+    var makesSound = UserDefaults.standard.object(forKey: "makesSound") as? Bool ?? false {
+        didSet { UserDefaults.standard.set(makesSound, forKey: "makesSound") }
+    }
     
     var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
     var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
@@ -85,7 +88,7 @@ class Engine {
         let notification = NSUserNotification()
         notification.title = time.formatted
         notification.informativeText = "of screen time"
-        notification.soundName = nil
+        notification.soundName = makesSound ? NSUserNotificationDefaultSoundName : nil
         notification.hasActionButton = false
         NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         NSUserNotificationCenter.default.deliver(notification)
