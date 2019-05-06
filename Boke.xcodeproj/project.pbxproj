@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A59F49A722802D0900A1F318 /* AppUpdater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2C9227F6DD100E415EA /* AppUpdater.framework */; };
+		A59F49A822802D0900A1F318 /* AppUpdater.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2C9227F6DD100E415EA /* AppUpdater.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A59F49AC22802D0900A1F318 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2CF227F6DD100E415EA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A59F49B022802D0900A1F318 /* Path.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2CD227F6DD100E415EA /* Path.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A59F49B422802D0900A1F318 /* PMKFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2CB227F6DD100E415EA /* PMKFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A59F49B822802D0900A1F318 /* Version.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A533D2D1227F6DD100E415EA /* Version.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */; };
 		A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */; };
 		A5C1DE7821CD3E7500F783C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */; };
@@ -16,7 +22,99 @@
 		A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDD65921CD80540010AEA9 /* Extends.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A533D2C8227F6DD100E415EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "AppUpdater::AppUpdater::Product";
+			remoteInfo = AppUpdater;
+		};
+		A533D2CA227F6DD100E415EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "PMKFoundation::PMKFoundation::Product";
+			remoteInfo = PMKFoundation;
+		};
+		A533D2CC227F6DD100E415EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Path.swift::Path::Product";
+			remoteInfo = Path;
+		};
+		A533D2CE227F6DD100E415EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "PromiseKit::PromiseKit::Product";
+			remoteInfo = PromiseKit;
+		};
+		A533D2D0227F6DD100E415EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Version::Version::Product";
+			remoteInfo = Version;
+		};
+		A59F49A922802D0900A1F318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "AppUpdater::AppUpdater";
+			remoteInfo = AppUpdater;
+		};
+		A59F49AD22802D0900A1F318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "PromiseKit::PromiseKit";
+			remoteInfo = PromiseKit;
+		};
+		A59F49B122802D0900A1F318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "Path.swift::Path";
+			remoteInfo = Path;
+		};
+		A59F49B522802D0900A1F318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "PMKFoundation::PMKFoundation";
+			remoteInfo = PMKFoundation;
+		};
+		A59F49B922802D0900A1F318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "Version::Version";
+			remoteInfo = Version;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A59F49BB22802D0900A1F318 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A59F49B822802D0900A1F318 /* Version.framework in Embed Frameworks */,
+				A59F49B022802D0900A1F318 /* Path.framework in Embed Frameworks */,
+				A59F49A822802D0900A1F318 /* AppUpdater.framework in Embed Frameworks */,
+				A59F49B422802D0900A1F318 /* PMKFoundation.framework in Embed Frameworks */,
+				A59F49AC22802D0900A1F318 /* PromiseKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppUpdater.xcodeproj; path = AppUpdater/AppUpdater.xcodeproj; sourceTree = "<group>"; };
 		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -34,18 +132,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59F49A722802D0900A1F318 /* AppUpdater.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A533D2B7227F6DD100E415EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A533D2C9227F6DD100E415EA /* AppUpdater.framework */,
+				A533D2CB227F6DD100E415EA /* PMKFoundation.framework */,
+				A533D2CD227F6DD100E415EA /* Path.framework */,
+				A533D2CF227F6DD100E415EA /* PromiseKit.framework */,
+				A533D2D1227F6DD100E415EA /* Version.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A533D2D2227F6DF100E415EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A5C1DE6721CD3E7400F783C0 = {
 			isa = PBXGroup;
 			children = (
 				A5C1DE7221CD3E7400F783C0 /* Sources */,
 				A5C1DE8721CD69B000F783C0 /* Resources */,
+				A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */,
 				A5C1DE7121CD3E7400F783C0 /* Products */,
+				A533D2D2227F6DF100E415EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,10 +210,16 @@
 				A5C1DE6C21CD3E7400F783C0 /* Sources */,
 				A5C1DE6D21CD3E7400F783C0 /* Frameworks */,
 				A5C1DE6E21CD3E7400F783C0 /* Resources */,
+				A59F49BB22802D0900A1F318 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A59F49AA22802D0900A1F318 /* PBXTargetDependency */,
+				A59F49AE22802D0900A1F318 /* PBXTargetDependency */,
+				A59F49B222802D0900A1F318 /* PBXTargetDependency */,
+				A59F49B622802D0900A1F318 /* PBXTargetDependency */,
+				A59F49BA22802D0900A1F318 /* PBXTargetDependency */,
 			);
 			name = Boke;
 			productName = "Up Time";
@@ -132,12 +258,56 @@
 			mainGroup = A5C1DE6721CD3E7400F783C0;
 			productRefGroup = A5C1DE7121CD3E7400F783C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A533D2B7227F6DD100E415EA /* Products */;
+					ProjectRef = A533D2B6227F6DD100E415EA /* AppUpdater.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A5C1DE6F21CD3E7400F783C0 /* Boke */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A533D2C9227F6DD100E415EA /* AppUpdater.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AppUpdater.framework;
+			remoteRef = A533D2C8227F6DD100E415EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A533D2CB227F6DD100E415EA /* PMKFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PMKFoundation.framework;
+			remoteRef = A533D2CA227F6DD100E415EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A533D2CD227F6DD100E415EA /* Path.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Path.framework;
+			remoteRef = A533D2CC227F6DD100E415EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A533D2CF227F6DD100E415EA /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = A533D2CE227F6DD100E415EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A533D2D1227F6DD100E415EA /* Version.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Version.framework;
+			remoteRef = A533D2D0227F6DD100E415EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A5C1DE6E21CD3E7400F783C0 /* Resources */ = {
@@ -165,6 +335,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A59F49AA22802D0900A1F318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppUpdater;
+			targetProxy = A59F49A922802D0900A1F318 /* PBXContainerItemProxy */;
+		};
+		A59F49AE22802D0900A1F318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PromiseKit;
+			targetProxy = A59F49AD22802D0900A1F318 /* PBXContainerItemProxy */;
+		};
+		A59F49B222802D0900A1F318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Path;
+			targetProxy = A59F49B122802D0900A1F318 /* PBXContainerItemProxy */;
+		};
+		A59F49B622802D0900A1F318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PMKFoundation;
+			targetProxy = A59F49B522802D0900A1F318 /* PBXContainerItemProxy */;
+		};
+		A59F49BA22802D0900A1F318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Version;
+			targetProxy = A59F49B922802D0900A1F318 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5C1DE7921CD3E7500F783C0 /* Main.storyboard */ = {
@@ -296,6 +494,7 @@
 		A5C1DE8121CD3E7500F783C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,6 +514,7 @@
 		A5C1DE8221CD3E7500F783C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_STYLE = Automatic;

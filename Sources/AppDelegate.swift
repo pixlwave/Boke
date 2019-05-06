@@ -1,7 +1,10 @@
 import Cocoa
+import AppUpdater
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    let updater = AppUpdater(owner: "pixlwave", repo: "Boke")
     
     var engine = Engine.client
     
@@ -12,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var menu: NSMenu!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        updater.allowPrereleases = true
+        
         statusItem.button?.image = #imageLiteral(resourceName: "MenubarIcon")
         statusItem.button?.image?.isTemplate = true
         statusItem.menu = menu
