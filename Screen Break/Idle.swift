@@ -7,14 +7,15 @@ class Idle {
     var curObj: io_registry_entry_t = 0
     
     var time: Int? {
-        var status = IOMasterPort(mach_port_t(MACH_PORT_NULL), &masterPort)
-        status = IOServiceGetMatchingServices(masterPort, IOServiceMatching("IOHIDSystem"), &iter)
+        // FIXME: check error code
+        IOMasterPort(mach_port_t(MACH_PORT_NULL), &masterPort)
+        IOServiceGetMatchingServices(masterPort, IOServiceMatching("IOHIDSystem"), &iter)
         let ioObject = IOIteratorNext(iter)
         guard ioObject != 0 else { return nil }
         
         var idleTime = UInt64()
         var unmanagedProperties: Unmanaged<CFMutableDictionary>?
-        status = IORegistryEntryCreateCFProperties(ioObject, &unmanagedProperties, kCFAllocatorDefault, 0)
+        IORegistryEntryCreateCFProperties(ioObject, &unmanagedProperties, kCFAllocatorDefault, 0)
         if let unmanaged = unmanagedProperties {
             let properties = unmanaged.takeUnretainedValue() as NSDictionary
             if let idle = properties["HIDIdleTime"] {

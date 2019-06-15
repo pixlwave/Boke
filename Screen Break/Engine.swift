@@ -6,13 +6,15 @@ class Engine {
     var workSessionLength = 25*60
     var breakLength = 5*60
     var timeSpentWorking = 0
-    var timeSpentIdle = 0
+    var elapsedIdleTime = 0
+    var lastNotificationDate: Date?
     
     var delegate: EngineDelegate?
     
     private var timer: Timer!
     private var workSessionStartedAt = Date()
     private var notification = NSUserNotification()
+    private let notificationCentre = NSUserNotificationCenter.default
     
     private init() {
         notification.title = "Take a break!"
@@ -41,13 +43,15 @@ class Engine {
     
     @objc private func update() {
         timeSpentWorking = Int(Date().timeIntervalSince(workSessionStartedAt))
-        timeSpentIdle = Idle().time ?? 0
+        elapsedIdleTime = Idle().time ?? 0
         
-        if timeSpentIdle < breakLength {   // this will break if nil returned for idleTime
+        if elapsedIdleTime < breakLength {   // this will break if nil returned for idleTime
             if timeSpentWorking > workSessionLength {
+                guard let interval = lastNotificationDate?.timeIntervalSinceNow, interval > 5 * 60 else { return }
                 notification.informativeText = "You've been working for \(timeSpentWorking / 60) minutes without a break"
-                NSUserNotificationCenter.default.removeAllDeliveredNotifications()
-                NSUserNotificationCenter.default.deliver(notification)
+                notificationCentre.removeAllDeliveredNotifications()
+                notificationCentre.deliver(notification)
+                lastNotificationDate = Date()
             }
         } else {
             workSessionStartedAt = Date()

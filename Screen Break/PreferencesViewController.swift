@@ -4,19 +4,23 @@ class PreferencesViewController: NSViewController {
     
     let engine = Engine.shared
 
-    @IBOutlet weak var workTimeSlider: NSSlider!
-    @IBOutlet weak var breakTimeSlider: NSSlider!
+    @IBOutlet weak var workSessionLengthSlider: NSSlider!
+    @IBOutlet weak var workSessionLengthLabel: NSTextField!
+    @IBOutlet weak var breakLengthSlider: NSSlider!
+    @IBOutlet weak var breakLengthLabel: NSTextField!
     
-    @IBOutlet weak var workingTimeLabel: NSTextField!
-    @IBOutlet weak var idleTimeLabel: NSTextField!
+    @IBOutlet weak var elapsedWorkTimeLabel: NSTextField!
+    @IBOutlet weak var elapsedIdleTimeLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         engine.delegate = self
         
-        workTimeSlider.integerValue = engine.workSessionLength / 60
-        breakTimeSlider.integerValue = engine.breakLength / 60
+        workSessionLengthSlider.integerValue = engine.workSessionLength / 60
+        workSessionLengthLabel.stringValue = "\(workSessionLengthSlider.integerValue) minutes"
+        breakLengthSlider.integerValue = engine.breakLength / 60
+        breakLengthLabel.stringValue = "\(breakLengthSlider.integerValue) minutes"
     }
     
     override func viewDidAppear() {
@@ -30,14 +34,16 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func changeWorkTime(_ sender: Any) {
-        if let slider = sender as? NSSlider, slider == workTimeSlider {
+        if let slider = sender as? NSSlider, slider == workSessionLengthSlider {
             engine.workSessionLength = slider.integerValue * 60
+            workSessionLengthLabel.stringValue = "\(slider.integerValue) minutes"
         }
     }
     
     @IBAction func changeBreakTime(_ sender: Any) {
-        if let slider = sender as? NSSlider, slider == breakTimeSlider {
+        if let slider = sender as? NSSlider, slider == breakLengthSlider {
             engine.breakLength = slider.integerValue * 60
+            breakLengthLabel.stringValue = "\(slider.integerValue) minutes"
         }
     }
     
@@ -46,8 +52,8 @@ class PreferencesViewController: NSViewController {
 extension PreferencesViewController: EngineDelegate {
     
     func engineUpdated() {
-        workingTimeLabel.integerValue = engine.timeSpentWorking
-        idleTimeLabel.integerValue = engine.timeSpentIdle
+        elapsedWorkTimeLabel.integerValue = engine.timeSpentWorking
+        elapsedIdleTimeLabel.integerValue = engine.elapsedIdleTime
     }
     
 }

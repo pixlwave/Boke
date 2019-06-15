@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -654,16 +656,36 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Screen_Break" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Screen_Break" customModuleProvider="target">
+                    <connections>
+                        <outlet property="menu" destination="Mgt-Bz-L47" id="frP-9r-tOd"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="Mgt-Bz-L47">
+                    <items>
+                        <menuItem title="Preferences" id="GY5-Qe-Txg">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="RlN-ul-72p"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Quit" id="G1Y-Si-RiX">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="terminate:" target="hnw-xV-0zn" id="2M7-ee-lVe"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController storyboardIdentifier="PreferencesWindow" id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -688,52 +710,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOX-Ct-98h">
-                                <rect key="frame" x="118" y="207" width="261" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="120" doubleValue="60" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="vN4-h1-DiU"/>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOX-Ct-98h">
+                                <rect key="frame" x="118" y="213" width="261" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="257" id="k4j-Ct-ZSS"/>
+                                </constraints>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="120" doubleValue="60" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="vN4-h1-DiU"/>
                                 <connections>
                                     <action selector="changeWorkTime:" target="XfG-lQ-9wD" id="0Ct-Ll-oQz"/>
                                 </connections>
                             </slider>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOs-gb-i9a">
-                                <rect key="frame" x="118" y="167" width="261" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="20" doubleValue="5" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="q63-Be-kY9"/>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jOs-gb-i9a">
+                                <rect key="frame" x="118" y="173" width="261" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="257" id="zJh-Vb-8Nz"/>
+                                </constraints>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="20" doubleValue="5" tickMarkPosition="below" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="q63-Be-kY9"/>
                                 <connections>
                                     <action selector="changeBreakTime:" target="XfG-lQ-9wD" id="SKp-qo-LnN"/>
                                 </connections>
                             </slider>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pr-Dq-15c">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pr-Dq-15c">
                                 <rect key="frame" x="18" y="179" width="63" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Break for:" id="kNg-mM-2G8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-QH-1aK">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-QH-1aK">
                                 <rect key="frame" x="18" y="219" width="60" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Work for:" id="tLX-lU-d0r">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nKO-17-eZ7">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nKO-17-eZ7">
                                 <rect key="frame" x="402" y="219" width="53" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="minutes" id="ml0-Ug-Z34">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-sG-5bp">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-sG-5bp">
                                 <rect key="frame" x="402" y="179" width="53" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="minutes" id="jhr-BP-7qV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -777,12 +799,28 @@
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="6pr-Dq-15c" firstAttribute="centerY" secondItem="jOs-gb-i9a" secondAttribute="firstBaseline" id="2qV-Bh-QgH"/>
+                            <constraint firstItem="ToC-QH-1aK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="4Dw-fw-eIr"/>
+                            <constraint firstItem="ToC-QH-1aK" firstAttribute="centerY" secondItem="GOX-Ct-98h" secondAttribute="firstBaseline" id="8n9-nV-kTT"/>
+                            <constraint firstItem="x5e-sG-5bp" firstAttribute="baseline" secondItem="6pr-Dq-15c" secondAttribute="baseline" id="9iI-yy-yBV"/>
+                            <constraint firstItem="nKO-17-eZ7" firstAttribute="baseline" secondItem="ToC-QH-1aK" secondAttribute="baseline" id="AbL-eE-lPY"/>
+                            <constraint firstItem="GOX-Ct-98h" firstAttribute="leading" secondItem="ToC-QH-1aK" secondAttribute="trailing" constant="44" id="X5Z-ZW-AJN"/>
+                            <constraint firstItem="x5e-sG-5bp" firstAttribute="leading" secondItem="jOs-gb-i9a" secondAttribute="trailing" constant="27" id="dr0-TY-Tti"/>
+                            <constraint firstItem="6pr-Dq-15c" firstAttribute="top" secondItem="ToC-QH-1aK" secondAttribute="bottom" constant="23" id="f53-hc-buF"/>
+                            <constraint firstItem="ToC-QH-1aK" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="34" id="iWh-kw-Us2"/>
+                            <constraint firstItem="nKO-17-eZ7" firstAttribute="leading" secondItem="GOX-Ct-98h" secondAttribute="trailing" constant="27" id="kYZ-nX-ZVv"/>
+                            <constraint firstItem="ToC-QH-1aK" firstAttribute="leading" secondItem="6pr-Dq-15c" secondAttribute="leading" id="ll9-ir-v1a"/>
+                            <constraint firstItem="jOs-gb-i9a" firstAttribute="leading" secondItem="6pr-Dq-15c" secondAttribute="trailing" constant="41" id="x9G-fB-Iek"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="breakTimeSlider" destination="jOs-gb-i9a" id="7oJ-WC-4hc"/>
-                        <outlet property="idleTimeLabel" destination="ibf-aL-6ju" id="9ZO-yR-2tD"/>
-                        <outlet property="workTimeSlider" destination="GOX-Ct-98h" id="eNL-DD-UiJ"/>
-                        <outlet property="workingTimeLabel" destination="diw-8t-ea9" id="adS-me-R1O"/>
+                        <outlet property="breakLengthLabel" destination="x5e-sG-5bp" id="37V-Va-5m3"/>
+                        <outlet property="breakLengthSlider" destination="jOs-gb-i9a" id="7oJ-WC-4hc"/>
+                        <outlet property="elapsedIdleTimeLabel" destination="ibf-aL-6ju" id="9ZO-yR-2tD"/>
+                        <outlet property="elapsedWorkTimeLabel" destination="diw-8t-ea9" id="adS-me-R1O"/>
+                        <outlet property="workSessionLengthLabel" destination="nKO-17-eZ7" id="CTE-JS-KqT"/>
+                        <outlet property="workSessionLengthSlider" destination="GOX-Ct-98h" id="eNL-DD-UiJ"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
