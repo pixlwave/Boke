@@ -18,14 +18,10 @@ class Network {
     
     func toggleProxy() {
         let path = "/usr/sbin/networksetup"
-        let arguments = ["-setsocksfirewallproxystate", "Wi-Fi"]
+        let value = proxyEnabled ? "off" : "on"
+        let arguments = ["-setsocksfirewallproxystate", "Wi-Fi", value]
         
-        if proxyEnabled {
-            Process.launch(path, with: arguments + ["off"])
-        } else {
-            Process.launch(path, with: arguments + ["on"])
-        }
-        
+        Process.launch(path, with: arguments + [value])
         updateProxyState()
     }
     
@@ -41,18 +37,14 @@ class Network {
 
     func toggleFirewall() {
         let path = "/usr/bin/osascript"
-        let arguments = ["-e"]
-        
-        if firewallEnabled {
+        let value = firewallEnabled ? "off" : "on"
+        let arguments = [
             // sudo ./socketfilterfw --setblockall on
-            let script = "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off\" with administrator privileges"
-            Process.launch(path, with: arguments + [script])
-        } else {
             // sudo ./socketfilterfw --setblockall off
-            let script = "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on\" with administrator privileges"
-            Process.launch(path, with: arguments + [script])
-        }
+            "-e", "do shell script \"/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall \(value)\" with administrator privileges"
+        ]
         
+        Process.launch(path, with: arguments)
         updateFirewallState()
     }
     
