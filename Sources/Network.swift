@@ -7,6 +7,10 @@ class Network {
     var proxyEnabled = false
     var firewallEnabled = false
     
+    var ssids = UserDefaults.standard.object(forKey: "ssids") as? [String] ?? [String]() {
+        didSet { UserDefaults.standard.set(ssids, forKey: "ssids") }
+    }
+    
     private init() {
         updateProxyState()
         updateFirewallState()
@@ -53,6 +57,13 @@ class Network {
             // check if the result includes the word 'DISABLED!'
             firewallEnabled = !result.contains("DISABLED!")
         }
+    }
+    
+    func connect(to networkName: String) {
+        let path = "/usr/sbin/networksetup"
+        let arguments = ["-setairportnetwork", "en0", networkName]
+        
+        Process.launch(path, arguments: arguments)
     }
     
 }
