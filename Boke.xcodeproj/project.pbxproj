@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ADCFE23253AD60080C3D0 /* Network.swift */; };
 		A5370B5E22AD254900BBA51F /* AppUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = A5370B5D22AD254900BBA51F /* AppUpdater */; };
 		A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */; };
 		A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */; };
@@ -31,7 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A5370B5F22AD27EC00BBA51F /* Boke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Boke.entitlements; sourceTree = "<group>"; };
+		A51ADCFE23253AD60080C3D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 				A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */,
 				A5C1DE8521CD3F1F00F783C0 /* Engine.swift */,
 				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
+				A51ADCFE23253AD60080C3D0 /* Network.swift */,
 				A5CDD65921CD80540010AEA9 /* Extends.swift */,
 			);
 			path = Sources;
@@ -90,7 +92,6 @@
 				A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */,
 				A5C1DE7921CD3E7500F783C0 /* Main.storyboard */,
 				A5C1DE7C21CD3E7500F783C0 /* Info.plist */,
-				A5370B5F22AD27EC00BBA51F /* Boke.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,6 +183,7 @@
 				A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */,
 				A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */,
 				A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */,
+				A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */,
 				A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +322,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -343,7 +344,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Resources/Boke.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
