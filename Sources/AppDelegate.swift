@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updater.allowPrereleases = true
         
         statusItem.button?.image = #imageLiteral(resourceName: "MenuBarUnknown")
-        statusItem.button?.image?.isTemplate = true
         statusItem.menu = menu
         
         menu.delegate = self
