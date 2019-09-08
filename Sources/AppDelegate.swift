@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         updater.allowPrereleases = true
         
-        statusItem.button?.image = #imageLiteral(resourceName: "MenubarIcon")
+        statusItem.button?.image = #imageLiteral(resourceName: "MenuBarUnknown")
         statusItem.button?.image?.isTemplate = true
         statusItem.menu = menu
         
@@ -42,26 +42,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateMenu() {
-        if network.proxyEnabled {
-            if network.firewallEnabled {
-                statusItem.button?.image = #imageLiteral(resourceName: "prfw")
-                proxyMenuItem.title = "Disable Proxy"
-                firewallMenuItem.title = "Disable Firewall"
-            } else {
-                statusItem.button?.image = #imageLiteral(resourceName: "pr")
-                proxyMenuItem.title = "Disable Proxy"
-                firewallMenuItem.title = "Enable Firewall"
-            }
-        } else {
-            if network.firewallEnabled {
-                statusItem.button?.image = #imageLiteral(resourceName: "fw")
-                proxyMenuItem.title = "Enable Proxy"
-                firewallMenuItem.title = "Disable Firewall"
-            } else {
-                statusItem.button?.image = #imageLiteral(resourceName: "off")
-                proxyMenuItem.title = "Enable Proxy"
-                firewallMenuItem.title = "Enable Firewall"
-            }
+        switch (network.proxyEnabled, network.firewallEnabled) {
+        case (false, false):
+            statusItem.button?.image = #imageLiteral(resourceName: "MenubarIcon")
+            proxyMenuItem.title = "Enable Proxy"
+            firewallMenuItem.title = "Enable Firewall"
+        case (true, false):
+            statusItem.button?.image = #imageLiteral(resourceName: "MenuBarProxy")
+            proxyMenuItem.title = "Disable Proxy"
+            firewallMenuItem.title = "Enable Firewall"
+        case (false, true):
+            statusItem.button?.image = #imageLiteral(resourceName: "MenuBarFirewall")
+            proxyMenuItem.title = "Enable Proxy"
+            firewallMenuItem.title = "Disable Firewall"
+        case (true, true):
+            statusItem.button?.image = #imageLiteral(resourceName: "MenuBarProxyFirewall")
+            proxyMenuItem.title = "Disable Proxy"
+            firewallMenuItem.title = "Disable Firewall"
         }
     }
     
