@@ -2,7 +2,7 @@ import Cocoa
 
 class PreferencesViewController: NSViewController {
     
-    let engine = Engine.client
+    let system = System.client
     
     @IBOutlet weak var workTimeSlider: NSSlider!
     @IBOutlet weak var workTimeLabel: NSTextField!
@@ -17,20 +17,20 @@ class PreferencesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workTimeSlider.doubleValue = engine.alertTime / 300
-        workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
-        resetTimeSlider.doubleValue = engine.resetTime / 60
-        resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
-        notificationFrequencyControl.selectSegment(withTag: engine.notificationFrequency)
+        workTimeSlider.doubleValue = system.alertTime / 300
+        workTimeLabel.stringValue = system.alertTime.formatted ?? ""
+        resetTimeSlider.doubleValue = system.resetTime / 60
+        resetTimeLabel.stringValue = system.resetTime.formatted ?? ""
+        notificationFrequencyControl.selectSegment(withTag: system.notificationFrequency)
         
-        soundsCheckbox.state = engine.makesSound ? .on : .off
+        soundsCheckbox.state = system.makesSound ? .on : .off
         
         statusLabel.stringValue =
             """
-            Boot date: \(engine.bootDate?.description ?? "nil")
-            Wake date: \(engine.wakeDate?.description ?? "nil")
-            Unlock date: \(engine.screenWakeDate?.description ?? "nil")
-            Time awake: \(engine.timeAwake().formatted ?? "Error")
+            Boot date: \(system.bootDate?.description ?? "nil")
+            Wake date: \(system.wakeDate?.description ?? "nil")
+            Unlock date: \(system.screenWakeDate?.description ?? "nil")
+            Time awake: \(system.timeAwake().formatted ?? "Error")
             """
     }
     
@@ -40,22 +40,22 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func workTimeChanged(_ sender: NSSlider) {
-        engine.alertTime = sender.doubleValue.rounded() * 300
-        workTimeLabel.stringValue = engine.alertTime.formatted ?? ""
+        system.alertTime = sender.doubleValue.rounded() * 300
+        workTimeLabel.stringValue = system.alertTime.formatted ?? ""
     }
     
     @IBAction func resetTimeChanged(_ sender: NSSlider) {
         let time = sender.doubleValue * 60
-        engine.resetTime = time.rounded()
-        resetTimeLabel.stringValue = engine.resetTime.formatted ?? ""
+        system.resetTime = time.rounded()
+        resetTimeLabel.stringValue = system.resetTime.formatted ?? ""
     }
     
     @IBAction func notificationFrequencyChanged(_ sender: NSSegmentedControl) {
-        engine.notificationFrequency = sender.tag(forSegment: sender.selectedSegment)
+        system.notificationFrequency = sender.tag(forSegment: sender.selectedSegment)
     }
     
     @IBAction func toggleSounds(_ sender: NSButton) {
-        engine.makesSound = sender.state == .on
+        system.makesSound = sender.state == .on
     }
     
 }

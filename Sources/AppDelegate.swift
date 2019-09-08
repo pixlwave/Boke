@@ -6,7 +6,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let updater = AppUpdater(owner: "pixlwave", repo: "Boke")
     
-    let engine = Engine.client
+    let system = System.client
     let network = Network.client
     
     let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 // MARK: NSMenuDelegate
 extension AppDelegate: NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
-        let timeRemaining = engine.timeRemaining()
+        let timeRemaining = system.timeRemaining()
         
         if timeRemaining > 0 {
             timeRemainingMenuItem.title = "\(timeRemaining.formatted ?? "Some time") remaining"

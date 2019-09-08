@@ -1,8 +1,8 @@
 import Foundation
 
-class Engine {
+class System {
     
-    static let client = Engine()
+    static let client = System()
     
     var timer: Timer?
     var updateFrequency = TimeInterval(60)
