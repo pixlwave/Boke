@@ -17,7 +17,7 @@ extension TimeInterval {
 }
 
 extension Process {
-    static func launch(_ path: String, arguments: [String]) {
+    static func launch(_ path: String, with arguments: [String]) {
         let process = Process()
         process.launchPath = path
         process.arguments = arguments
@@ -26,7 +26,7 @@ extension Process {
         process.waitUntilExit()
     }
     
-    static func launch(returning path: String, arguments: [String]) -> String? {
+    static func launch(returning path: String, with arguments: [String]) -> String? {
         let process = Process()
         process.launchPath = path
         process.arguments = arguments
