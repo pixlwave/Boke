@@ -3,6 +3,7 @@ import Cocoa
 class PreferencesViewController: NSViewController {
     
     let system = System.client
+    let network = Network.client
     
     @IBOutlet weak var workTimeSlider: NSSlider!
     @IBOutlet weak var workTimeLabel: NSTextField!
@@ -13,6 +14,8 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var soundsCheckbox: NSButton!
     
     @IBOutlet weak var statusLabel: NSTextField!
+    
+    @IBOutlet weak var networkTableView: NSTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,5 +61,38 @@ class PreferencesViewController: NSViewController {
         system.makesSound = sender.state == .on
     }
     
+    @IBAction func addNetwork(_ sender: Any) {
+        let alert = NSAlert()
+        alert.informativeText = "Please enter the name for the new network"
+        alert.messageText = "Network Name"
+        alert.addButton(withTitle: "Ok")
+        alert.addButton(withTitle: "Cancel")
+        
+        let ssidNameTextField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 20))
+        alert.accessoryView = ssidNameTextField
+        
+        if alert.runModal() == .alertFirstButtonReturn, !ssidNameTextField.stringValue.isEmpty {
+            network.ssids.append(ssidNameTextField.stringValue)
+            networkTableView.reloadData()
+        }
+    }
+    
+    @IBAction func removeSelectedNetwork(_ sender: Any) {
+        if networkTableView.selectedRow >= 0 {
+            network.ssids.remove(at: networkTableView.selectedRow)
+            networkTableView.reloadData()
+        }
+    }
+    
 }
 
+
+extension PreferencesViewController: NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        network.ssids.count
+    }
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        network.ssids[row]
+    }
+}
