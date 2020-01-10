@@ -703,7 +703,7 @@
                         <menuItem title="0 minutes remaining" id="zdH-6I-Lz9">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="Preferences" id="lGM-tz-AtI">
+                        <menuItem title="Preferences…" id="lGM-tz-AtI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="fg8-YW-glP"/>
