@@ -20,7 +20,7 @@ struct TimerView: View {
     var body: some View {
         Form {
             HStack(alignment: .firstTextBaseline) {
-                Slider(value: $system.alertTime, in: (10 * 60)...(120 * 60), step: 10 * 60) { Text("Alert time:") }
+                Slider(value: $system.alertTime, in: (5 * 60)...(120 * 60), step: 5 * 60) { Text("Alert time:") }
                 Text(system.alertTime.formatted ?? "")
                     .frame(width: 120, alignment: .leading)
             }
@@ -41,11 +41,13 @@ struct TimerView: View {
             
             Divider().padding(.vertical, 5)
             
-            VStack(alignment: .leading) {
-                Text("Boot date: \(system.bootDate?.description ?? "nil")")
-                Text("Wake date: \(system.wakeDate?.description ?? "nil")")
-                Text("Unlock date: \(system.screenWakeDate?.description ?? "nil")")
-                Text("Time awake: \(system.timeAwake().formatted ?? "Error")")
+            GroupBox {
+                VStack(alignment: .leading) {
+                    Text("Boot date: \(system.bootDate?.description ?? "nil")")
+                    Text("Wake date: \(system.wakeDate?.description ?? "nil")")
+                    Text("Unlock date: \(system.screenWakeDate?.description ?? "nil")")
+                    Text("Time awake: \(system.timeAwake().formatted ?? "Error")")
+                }
             }
             .foregroundColor(.secondary)
         }
