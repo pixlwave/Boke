@@ -21,11 +21,13 @@ struct TimerView: View {
         Form {
             HStack {
                 Slider(value: $system.alertTime, in: (5 * 60)...(120 * 60)) { Text("Alert time:") }
-                Text("1 hour")
+                Text(system.alertTime.formatted ?? "")
+                    .frame(width: 120, alignment: .leading)
             }
             HStack {
                 Slider(value: $system.resetTime, in: (1 * 60)...(20 * 60)) { Text("Screen reset time:") }
-                Text("2 minutes")
+                Text(system.resetTime.formatted ?? "")
+                    .frame(width: 120, alignment: .leading)
             }
             Picker(selection: $system.notificationFrequency, label: Text("Notification frequency:")) {
                 Text("1 minute").tag(1)

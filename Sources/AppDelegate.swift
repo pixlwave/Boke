@@ -81,6 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.arrangeInFront(self)
     }
     
+    #warning("Add a call to this")
     func preferencesWindowDidClose() {
         preferencesWindow = nil
     }

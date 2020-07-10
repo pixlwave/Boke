@@ -10,7 +10,6 @@
 		A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ADCFE23253AD60080C3D0 /* Network.swift */; };
 		A5690C5124B2363800DDA10E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5690C5024B2363800DDA10E /* PreferencesView.swift */; };
 		A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */; };
-		A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */; };
 		A5C1DE7821CD3E7500F783C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */; };
 		A5C1DE7B21CD3E7500F783C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7921CD3E7500F783C0 /* Main.storyboard */; };
 		A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */; };
@@ -36,7 +35,6 @@
 		A5690C5024B2363800DDA10E /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5C1DE7A21CD3E7500F783C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5C1DE7C21CD3E7500F783C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 			children = (
 				A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */,
 				A5690C5024B2363800DDA10E /* PreferencesView.swift */,
-				A5C1DE7521CD3E7400F783C0 /* PreferencesViewController.swift */,
 				A5C1DE8521CD3F1F00F783C0 /* System.swift */,
 				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
 				A51ADCFE23253AD60080C3D0 /* Network.swift */,
@@ -179,7 +176,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */,
-				A5C1DE7621CD3E7400F783C0 /* PreferencesViewController.swift in Sources */,
 				A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */,
 				A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */,
 				A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */,
