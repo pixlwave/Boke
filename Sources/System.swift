@@ -1,22 +1,22 @@
 import Foundation
 
-class System {
+class System: ObservableObject {
     
     static let client = System()
     
     var timer: Timer?
     var updateFrequency = TimeInterval(60)
     
-    var alertTime = UserDefaults.standard.object(forKey: "alertTime") as? Double ?? TimeInterval(3600) {
+    @Published var alertTime = UserDefaults.standard.object(forKey: "alertTime") as? Double ?? TimeInterval(3600) {
         didSet { UserDefaults.standard.set(alertTime, forKey: "alertTime") }
     }
-    var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
+    @Published var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
         didSet { UserDefaults.standard.set(resetTime, forKey: "resetTime") }
     }
-    var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
+    @Published var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
         didSet { UserDefaults.standard.set(notificationFrequency, forKey: "notificationFrequency") }
     }
-    var makesSound = UserDefaults.standard.object(forKey: "makesSound") as? Bool ?? false {
+    @Published var makesSound = UserDefaults.standard.object(forKey: "makesSound") as? Bool ?? false {
         didSet { UserDefaults.standard.set(makesSound, forKey: "makesSound") }
     }
     

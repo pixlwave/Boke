@@ -1,13 +1,13 @@
 import Foundation
 
-class Network {
+class Network: ObservableObject {
     
     static let client = Network()
     
     var proxyEnabled = false
     var firewallEnabled = false
     
-    var ssids = UserDefaults.standard.object(forKey: "ssids") as? [String] ?? [String]() {
+    @Published var ssids = UserDefaults.standard.object(forKey: "ssids") as? [String] ?? [String]() {
         didSet { UserDefaults.standard.set(ssids, forKey: "ssids") }
     }
     

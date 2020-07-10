@@ -1,10 +1,7 @@
 import Cocoa
-import AppUpdater
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    let updater = AppUpdater(owner: "pixlwave", repo: "Boke")
     
     let system = System.client
     let network = Network.client
@@ -19,8 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var timeRemainingMenuItem: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        updater.allowPrereleases = true
-        
         statusItem.button?.image = #imageLiteral(resourceName: "MenuBarUnknown")
         statusItem.menu = menu
         
@@ -78,7 +73,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func showPreferencesWindow(_ sender: Any) {
         if preferencesWindow == nil {
-            preferencesWindow = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("PreferencesWindow")) as? NSWindowController
+            preferencesWindow = storyboard.instantiateController(withIdentifier: "PreferencesWindow") as? NSWindowController
+            preferencesWindow?.window?.contentView = PreferencesView.makeHostedView()
         }
         
         preferencesWindow?.showWindow(self)
