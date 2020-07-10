@@ -19,13 +19,13 @@ struct TimerView: View {
     
     var body: some View {
         Form {
-            HStack {
-                Slider(value: $system.alertTime, in: (5 * 60)...(120 * 60)) { Text("Alert time:") }
+            HStack(alignment: .firstTextBaseline) {
+                Slider(value: $system.alertTime, in: (10 * 60)...(120 * 60), step: 10 * 60) { Text("Alert time:") }
                 Text(system.alertTime.formatted ?? "")
                     .frame(width: 120, alignment: .leading)
             }
-            HStack {
-                Slider(value: $system.resetTime, in: (1 * 60)...(20 * 60)) { Text("Screen reset time:") }
+            HStack(alignment: .firstTextBaseline) {
+                Slider(value: $system.resetTime, in: (1 * 60)...(20 * 60), step: 1 * 60) { Text("Screen reset time:") }
                 Text(system.resetTime.formatted ?? "")
                     .frame(width: 120, alignment: .leading)
             }
