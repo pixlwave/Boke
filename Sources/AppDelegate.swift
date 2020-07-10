@@ -75,13 +75,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if preferencesWindow == nil {
             preferencesWindow = storyboard.instantiateController(withIdentifier: "PreferencesWindow") as? NSWindowController
             preferencesWindow?.window?.contentView = PreferencesView.makeHostedView()
+            preferencesWindow?.window?.delegate = self
         }
         
         preferencesWindow?.showWindow(self)
         NSApplication.shared.arrangeInFront(self)
     }
     
-    #warning("Add a call to this")
     func preferencesWindowDidClose() {
         preferencesWindow = nil
     }
@@ -99,6 +99,14 @@ extension AppDelegate: NSMenuDelegate {
         } else {
             timeRemainingMenuItem.title = "\(abs(timeRemaining).formatted ?? "Some time") over"
         }
+    }
+}
+
+
+// MARK: NSWindowDelegate
+extension AppDelegate: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        preferencesWindowDidClose()
     }
 }
 
