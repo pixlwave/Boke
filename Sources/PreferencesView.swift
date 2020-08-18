@@ -29,12 +29,16 @@ struct TimerView: View {
                 Text(system.resetTime.formatted ?? "")
                     .frame(width: 120, alignment: .leading)
             }
-            Picker(selection: $system.notificationFrequency, label: Text("Notification frequency:")) {
-                Text("1 minute").tag(1)
-                Text("5 minutes").tag(5)
-                Text("10 minutes").tag(10)
+            HStack {
+                Picker(selection: $system.notificationFrequency, label: Text("Notification frequency:")) {
+                    Text("1 minute").tag(1)
+                    Text("5 minutes").tag(5)
+                    Text("10 minutes").tag(10)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                Spacer()
+                    .frame(width: 125)
             }
-            .pickerStyle(SegmentedPickerStyle())
             Toggle(isOn: $system.makesSound) {
                 Text("Sounds")
             }
