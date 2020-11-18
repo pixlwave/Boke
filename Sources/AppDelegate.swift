@@ -7,7 +7,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let network = Network.client
     
     let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var preferencesWindow: NSWindowController?
     
     @IBOutlet weak var menu: NSMenu!
