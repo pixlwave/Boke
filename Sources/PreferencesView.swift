@@ -70,7 +70,9 @@ struct NetworkView: View {
             List(network.ssids, id: \.self, selection: $selectedSSID) { ssid in
                 Text(ssid)
             }
+            .border(Color(.separatorColor))
             .padding(.all)
+            
             VStack {
                 Button("Add Network") {
                     isPresentingSheet.toggle()
