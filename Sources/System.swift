@@ -30,7 +30,7 @@ class System: ObservableObject {
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidSleep), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
         
-        timer = newTimer()
+        timer = makeTimer()
     }
     
     @objc func screenDidSleep() {
@@ -41,7 +41,7 @@ class System: ObservableObject {
     }
     
     @objc func screenDidWake() {
-        if timer == nil { timer = newTimer() }
+        if timer == nil { timer = makeTimer() }
         
         if let screenSleepDate = screenSleepDate {
             let now = Date()
@@ -98,8 +98,8 @@ class System: ObservableObject {
         NSUserNotificationCenter.default.removeAllDeliveredNotifications()
     }
     
-    func newTimer() -> Timer {
-        return Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
+    func makeTimer() -> Timer {
+        Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
             self.update()
         }
     }
