@@ -31,6 +31,8 @@ class System: ObservableObject {
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
         
         timer = makeTimer()
+        
+        update()    // remove stale notifications
     }
     
     @objc func screenDidSleep() {
