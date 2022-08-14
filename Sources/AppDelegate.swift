@@ -23,16 +23,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSUserNotificationCenter.default.delegate = self
         
         updateMenu()
-        
-        if network.ssids.count > 0 {
-            menu.items.insert(NSMenuItem.separator(), at: 3)
-            
-            for ssid in network.ssids.reversed() {
-                let item = NSMenuItem(title: "Connect to \(ssid)", action: #selector(connectToNetwork(_:)), keyEquivalent: "")
-                item.representedObject = ssid
-                menu.items.insert(item, at: 3)
-            }
-        }
     }
     
     @IBAction func toggleProxy(_ sender: Any) {
@@ -43,11 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func toggleFirewall(_ sender: Any) {
         network.toggleFirewall()
         updateMenu()
-    }
-    
-    @IBAction func connectToNetwork(_ sender: Any) {
-        guard let item = sender as? NSMenuItem, let ssid = item.representedObject as? String else { return }
-        network.connect(to: ssid)
     }
     
     func updateMenu() {

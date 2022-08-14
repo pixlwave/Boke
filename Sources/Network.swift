@@ -1,15 +1,10 @@
 import Foundation
 
 class Network: ObservableObject {
-    
     static let client = Network()
     
     var proxyEnabled = false
     var firewallEnabled = false
-    
-    @Published var ssids = UserDefaults.standard.object(forKey: "ssids") as? [String] ?? [String]() {
-        didSet { UserDefaults.standard.set(ssids, forKey: "ssids") }
-    }
     
     private init() {
         updateProxyState()
@@ -57,12 +52,4 @@ class Network: ObservableObject {
             firewallEnabled = !result.contains("DISABLED!")
         }
     }
-    
-    func connect(to networkName: String) {
-        let path = "/usr/sbin/networksetup"
-        let arguments = ["-setairportnetwork", "en0", networkName]
-        
-        Process.launch(path, with: arguments)
-    }
-    
 }

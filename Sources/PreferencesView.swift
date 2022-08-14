@@ -8,7 +8,6 @@ struct PreferencesView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             TimerView().tabItem { Text("Timer") }.tag(1)
-            NetworkView().tabItem { Text("Network") }.tag(2)
         }
         .padding(.all)
     }
@@ -59,68 +58,8 @@ struct TimerView: View {
     }
 }
 
-struct NetworkView: View {
-    @ObservedObject var network = Network.client
-    
-    @State private var selectedSSID = Set<String>()
-    @State private var isPresentingSheet = false
-    
-    var body: some View {
-        HStack {
-            List(network.ssids, id: \.self, selection: $selectedSSID) { ssid in
-                Text(ssid)
-            }
-            .border(Color(.separatorColor))
-            .padding(.all)
-            
-            VStack {
-                Button("Add Network") {
-                    isPresentingSheet.toggle()
-                }
-                Button("Remove Network") {
-                    network.ssids.removeAll(where: { $0 == selectedSSID.first })
-                }
-            }
-        }
-        .padding(.all)
-        .sheet(isPresented: $isPresentingSheet) {
-            AddNetworkSheet(isPresented: $isPresentingSheet)
-        }
-    }
-}
-
-struct AddNetworkSheet: View {
-    @Binding var isPresented: Bool
-    @State private var networkName = ""
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Network Name")
-                .font(.system(size: 13, weight: .bold))
-                .padding(.bottom, 8)
-            Text("Please enter the name for the new network")
-            TextField("", text: $networkName)
-            HStack {
-                Spacer()
-                Button("Cancel") {
-                    isPresented.toggle()
-                }
-                Button("Ok") {
-                    Network.client.ssids.append(networkName)
-                    isPresented.toggle()
-                }.disabled(networkName.isEmpty || Network.client.ssids.contains(networkName))
-            }
-         }
-        .padding()
-    }
-}
-
 struct PreferencesView_Previews: PreviewProvider {
-    @State static var isPresented: Bool = true
     static var previews: some View {
-        Group {
-            PreferencesView()
-            AddNetworkSheet(isPresented: $isPresented)
-                .frame(width: 300)
-        }
+        PreferencesView()
     }
 }
