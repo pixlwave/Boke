@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ADCFE23253AD60080C3D0 /* Network.swift */; };
 		A5690C5124B2363800DDA10E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5690C5024B2363800DDA10E /* PreferencesView.swift */; };
+		A5A0DA6828A95962007061DF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0DA6728A95962007061DF /* TimerView.swift */; };
 		A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */; };
 		A5C1DE7821CD3E7500F783C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */; };
 		A5C1DE7B21CD3E7500F783C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7921CD3E7500F783C0 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		A51ADCFE23253AD60080C3D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A5690C5024B2363800DDA10E /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		A5A0DA6728A95962007061DF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +56,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5A0DA6528A95902007061DF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A51ADCFE23253AD60080C3D0 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A5A0DA6628A95913007061DF /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				A5A0DA6728A95962007061DF /* TimerView.swift */,
+				A5C1DE8521CD3F1F00F783C0 /* System.swift */,
+				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		A5C1DE6721CD3E7400F783C0 = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */,
-				A5690C5024B2363800DDA10E /* PreferencesView.swift */,
-				A5C1DE8521CD3F1F00F783C0 /* System.swift */,
-				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
-				A51ADCFE23253AD60080C3D0 /* Network.swift */,
 				A5CDD65921CD80540010AEA9 /* Extends.swift */,
+				A5690C5024B2363800DDA10E /* PreferencesView.swift */,
+				A5A0DA6628A95913007061DF /* Timer */,
+				A5A0DA6528A95902007061DF /* Network */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -175,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A0DA6828A95962007061DF /* TimerView.swift in Sources */,
 				A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */,
 				A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */,
 				A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */,

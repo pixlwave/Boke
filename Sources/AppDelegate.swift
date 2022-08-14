@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         preferencesWindow?.showWindow(self)
-        NSApplication.shared.arrangeInFront(self)
+        NSRunningApplication.current.activate(options: .activateIgnoringOtherApps)
     }
     
     func preferencesWindowDidClose() {

@@ -1,7 +1,6 @@
 import Foundation
 
 class System: ObservableObject {
-    
     static let client = System()
     
     var timer: Timer?
@@ -105,19 +104,17 @@ class System: ObservableObject {
             self.update()
         }
     }
-
 }
 
 
 // MARK: Sysctl Additions
-extension Sysctl {
-    
-    public static func date(for string: String) -> Date? {
+private extension Sysctl {
+    static func date(for string: String) -> Date? {
         guard let keys = try? Sysctl.keys(for: string) else { return nil }
         return Sysctl.date(for: keys)
     }
     
-    public static func date(for keys: [Int32]) -> Date? {
+    static func date(for keys: [Int32]) -> Date? {
         guard let result = try? Sysctl.data(for: keys) else { return nil }
         
         var seconds = 0
@@ -126,5 +123,4 @@ extension Sysctl {
         let date = Date(timeIntervalSince1970: Double(seconds))
         return date
     }
-    
 }
