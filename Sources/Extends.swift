@@ -12,7 +12,7 @@ extension Formatter {
 
 extension TimeInterval {
     var formatted: String? {
-        return Formatter.timeInterval.string(from: self)
+        Formatter.timeInterval.string(from: self)
     }
 }
 

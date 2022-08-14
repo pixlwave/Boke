@@ -1,4 +1,4 @@
-import Foundation
+import UserNotifications
 
 class System: ObservableObject {
     static let client = System()
@@ -69,7 +69,7 @@ class System: ObservableObject {
     }
     
     func timeRemaining() -> TimeInterval {
-        return alertTime - timeAwake()
+        alertTime - timeAwake()
     }
     
     func update() {
@@ -86,17 +86,17 @@ class System: ObservableObject {
     }
     
     func deliverNotification(for time: TimeInterval) {
-        let notification = NSUserNotification()
-        notification.title = time.formatted
-        notification.informativeText = "of screen time"
-        notification.soundName = makesSound ? NSUserNotificationDefaultSoundName : nil
-        notification.hasActionButton = false
-        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
-        NSUserNotificationCenter.default.deliver(notification)
+        let content = UNMutableNotificationContent()
+        content.title = time.formatted ?? "ERROR"
+        content.subtitle = "of screen time"
+        content.sound = makesSound ? .default : nil
+        let request = UNNotificationRequest(identifier: "timer", content: content, trigger: nil)
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().add(request)
     }
     
     func removeAllNotifications() {
-        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
     
     func makeTimer() -> Timer {

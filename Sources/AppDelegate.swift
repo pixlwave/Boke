@@ -20,7 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = menu
         
         menu.delegate = self
-        NSUserNotificationCenter.default.delegate = self
         
         updateMenu()
     }
@@ -92,13 +91,5 @@ extension AppDelegate: NSMenuDelegate {
 extension AppDelegate: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         preferencesWindowDidClose()
-    }
-}
-
-
-// MARK: NSUserNotificationCenterDelegate
-extension AppDelegate: NSUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
     }
 }
