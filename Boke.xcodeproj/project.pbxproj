@@ -3,16 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ADCFE23253AD60080C3D0 /* Network.swift */; };
-		A5690C5124B2363800DDA10E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5690C5024B2363800DDA10E /* PreferencesView.swift */; };
+		A565BB0429B6416A003DD12C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB0329B6416A003DD12C /* MainMenu.swift */; };
+		A565BB2F29B647E0003DD12C /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2629B647E0003DD12C /* MIDIManager.swift */; };
+		A565BB3029B647E0003DD12C /* ControllableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2729B647E0003DD12C /* ControllableApp.swift */; };
+		A565BB3129B647E0003DD12C /* InputMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2829B647E0003DD12C /* InputMapper.swift */; };
+		A565BB3229B647E0003DD12C /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2929B647E0003DD12C /* Command.swift */; };
+		A565BB3329B647E0003DD12C /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2B29B647E0003DD12C /* NoteCell.swift */; };
+		A565BB3429B647E0003DD12C /* LinkEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2C29B647E0003DD12C /* LinkEditor.swift */; };
+		A565BB3529B647E0003DD12C /* NotesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2D29B647E0003DD12C /* NotesGrid.swift */; };
+		A565BB3629B647E0003DD12C /* MIDIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BB2E29B647E0003DD12C /* MIDIView.swift */; };
+		A565BB3929B648AC003DD12C /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = A565BB3829B648AC003DD12C /* AudioKit */; };
+		A5690C5124B2363800DDA10E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5690C5024B2363800DDA10E /* SettingsView.swift */; };
 		A5A0DA6828A95962007061DF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A0DA6728A95962007061DF /* TimerView.swift */; };
-		A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */; };
+		A5C1DE7421CD3E7400F783C0 /* BokeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE7321CD3E7400F783C0 /* BokeApp.swift */; };
 		A5C1DE7821CD3E7500F783C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */; };
-		A5C1DE7B21CD3E7500F783C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C1DE7921CD3E7500F783C0 /* Main.storyboard */; };
 		A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */; };
 		A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1DE8521CD3F1F00F783C0 /* System.swift */; };
 		A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDD65921CD80540010AEA9 /* Extends.swift */; };
@@ -33,12 +42,20 @@
 
 /* Begin PBXFileReference section */
 		A51ADCFE23253AD60080C3D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		A5690C5024B2363800DDA10E /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		A565BB0329B6416A003DD12C /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		A565BB2629B647E0003DD12C /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		A565BB2729B647E0003DD12C /* ControllableApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllableApp.swift; sourceTree = "<group>"; };
+		A565BB2829B647E0003DD12C /* InputMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMapper.swift; sourceTree = "<group>"; };
+		A565BB2929B647E0003DD12C /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		A565BB2B29B647E0003DD12C /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		A565BB2C29B647E0003DD12C /* LinkEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkEditor.swift; sourceTree = "<group>"; };
+		A565BB2D29B647E0003DD12C /* NotesGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesGrid.swift; sourceTree = "<group>"; };
+		A565BB2E29B647E0003DD12C /* MIDIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIView.swift; sourceTree = "<group>"; };
+		A5690C5024B2363800DDA10E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A5A0DA6728A95962007061DF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A5C1DE7021CD3E7400F783C0 /* Boke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boke.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5C1DE7321CD3E7400F783C0 /* BokeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BokeApp.swift; sourceTree = "<group>"; };
 		A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5C1DE7A21CD3E7500F783C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5C1DE7C21CD3E7500F783C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlSysctl.swift; sourceTree = "<group>"; };
 		A5C1DE8521CD3F1F00F783C0 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
@@ -50,12 +67,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A565BB3929B648AC003DD12C /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A565BB2029B6477C003DD12C /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				A565BB2529B647E0003DD12C /* Engine */,
+				A565BB2A29B647E0003DD12C /* Views */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		A565BB2529B647E0003DD12C /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				A565BB2829B647E0003DD12C /* InputMapper.swift */,
+				A565BB2729B647E0003DD12C /* ControllableApp.swift */,
+				A565BB2929B647E0003DD12C /* Command.swift */,
+				A565BB2629B647E0003DD12C /* MIDIManager.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		A565BB2A29B647E0003DD12C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A565BB2E29B647E0003DD12C /* MIDIView.swift */,
+				A565BB2D29B647E0003DD12C /* NotesGrid.swift */,
+				A565BB2B29B647E0003DD12C /* NoteCell.swift */,
+				A565BB2C29B647E0003DD12C /* LinkEditor.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A5A0DA6528A95902007061DF /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,9 +116,9 @@
 		A5A0DA6628A95913007061DF /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				A5A0DA6728A95962007061DF /* TimerView.swift */,
 				A5C1DE8521CD3F1F00F783C0 /* System.swift */,
 				A5C1DE8321CD3EF600F783C0 /* CwlSysctl.swift */,
+				A5A0DA6728A95962007061DF /* TimerView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -94,11 +143,13 @@
 		A5C1DE7221CD3E7400F783C0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A5C1DE7321CD3E7400F783C0 /* AppDelegate.swift */,
+				A5C1DE7321CD3E7400F783C0 /* BokeApp.swift */,
+				A565BB0329B6416A003DD12C /* MainMenu.swift */,
 				A5CDD65921CD80540010AEA9 /* Extends.swift */,
-				A5690C5024B2363800DDA10E /* PreferencesView.swift */,
+				A5690C5024B2363800DDA10E /* SettingsView.swift */,
 				A5A0DA6628A95913007061DF /* Timer */,
 				A5A0DA6528A95902007061DF /* Network */,
+				A565BB2029B6477C003DD12C /* MIDI */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -107,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				A5C1DE7721CD3E7500F783C0 /* Assets.xcassets */,
-				A5C1DE7921CD3E7500F783C0 /* Main.storyboard */,
 				A5C1DE7C21CD3E7500F783C0 /* Info.plist */,
 			);
 			path = Resources;
@@ -131,6 +181,7 @@
 			);
 			name = Boke;
 			packageProductDependencies = (
+				A565BB3829B648AC003DD12C /* AudioKit */,
 			);
 			productName = "Up Time";
 			productReference = A5C1DE7021CD3E7400F783C0 /* Boke.app */;
@@ -143,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = pixlwave;
 				TargetAttributes = {
 					A5C1DE6F21CD3E7400F783C0 = {
@@ -167,6 +218,7 @@
 			);
 			mainGroup = A5C1DE6721CD3E7400F783C0;
 			packageReferences = (
+				A565BB3729B648AC003DD12C /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = A5C1DE7121CD3E7400F783C0 /* Products */;
 			projectDirPath = "";
@@ -183,7 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C1DE7821CD3E7500F783C0 /* Assets.xcassets in Resources */,
-				A5C1DE7B21CD3E7500F783C0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,28 +245,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A565BB3429B647E0003DD12C /* LinkEditor.swift in Sources */,
+				A565BB3529B647E0003DD12C /* NotesGrid.swift in Sources */,
+				A565BB3629B647E0003DD12C /* MIDIView.swift in Sources */,
 				A5A0DA6828A95962007061DF /* TimerView.swift in Sources */,
+				A565BB3329B647E0003DD12C /* NoteCell.swift in Sources */,
 				A5C1DE8621CD3F1F00F783C0 /* System.swift in Sources */,
+				A565BB3029B647E0003DD12C /* ControllableApp.swift in Sources */,
+				A565BB0429B6416A003DD12C /* MainMenu.swift in Sources */,
+				A565BB3129B647E0003DD12C /* InputMapper.swift in Sources */,
 				A5CDD65A21CD80540010AEA9 /* Extends.swift in Sources */,
-				A5C1DE7421CD3E7400F783C0 /* AppDelegate.swift in Sources */,
+				A5C1DE7421CD3E7400F783C0 /* BokeApp.swift in Sources */,
 				A51ADCFF23253AD60080C3D0 /* Network.swift in Sources */,
 				A5C1DE8421CD3EF600F783C0 /* CwlSysctl.swift in Sources */,
-				A5690C5124B2363800DDA10E /* PreferencesView.swift in Sources */,
+				A5690C5124B2363800DDA10E /* SettingsView.swift in Sources */,
+				A565BB2F29B647E0003DD12C /* MIDIManager.swift in Sources */,
+				A565BB3229B647E0003DD12C /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A5C1DE7921CD3E7500F783C0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5C1DE7A21CD3E7500F783C0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A5C1DE7E21CD3E7500F783C0 /* Debug */ = {
@@ -253,6 +302,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -270,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -315,6 +365,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -326,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -344,6 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 17;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NU8A5Y875P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -351,7 +403,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.pixlwave.Boke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,6 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 17;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NU8A5Y875P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -376,7 +428,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.pixlwave.Boke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -407,6 +458,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A565BB3729B648AC003DD12C /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A565BB3829B648AC003DD12C /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A565BB3729B648AC003DD12C /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5C1DE6821CD3E7400F783C0 /* Project object */;
 }

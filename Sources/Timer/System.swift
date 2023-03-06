@@ -26,8 +26,10 @@ class System: ObservableObject {
     
     private init() {
         // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidSleep), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidSleep),
+                                                            name: NSNotification.Name("com.apple.screenIsLocked"), object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake),
+                                                            name: NSNotification.Name("com.apple.screenIsUnlocked"), object: nil)
         
         timer = makeTimer()
         
