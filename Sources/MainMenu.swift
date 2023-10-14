@@ -6,7 +6,7 @@ struct MainMenu: Scene {
     @ObservedObject private var inputMapper = InputMapper.shared
     
     var body: some Scene {
-        MenuBarExtra("Boke", image: icon) {
+        MenuBarExtra {
             Button(proxyItemTitle, action: Network.client.toggleProxy)
             Button(firewallItemTitle, action: Network.client.toggleFirewall)
             
@@ -14,21 +14,24 @@ struct MainMenu: Scene {
             
             Text(timeRemaining) // TODO: Use a Date with a formatter so this updates.
             
-            Button("Settings…", action: showSettings)
+            SettingsLink()
             Button("Quit", action: quit)
+        } label: {
+            // Use a label with an NSImage as the image parameter doesn't render as Retina.
+            Label { Text("Boke") } icon: { Image(nsImage: .init(resource: icon)) }
         }
     }
     
-    var icon: String {
+    var icon: ImageResource {
         switch (network.proxyEnabled, network.firewallEnabled) {
         case (false, false):
-            return "MenuBarIcon"
+            return .menuBarIcon
         case (true, false):
-            return "MenuBarProxy"
+            return .menuBarProxy
         case (false, true):
-            return "MenuBarFirewall"
+            return .menuBarFirewall
         case (true, true):
-            return "MenuBarProxyFirewall"
+            return .menuBarProxyFirewall
         }
     }
     
@@ -48,11 +51,6 @@ struct MainMenu: Scene {
         } else {
             return "\(abs(timeRemaining).formatted ?? "Some time") over"
         }
-    }
-    
-    func showSettings() {
-        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-        NSRunningApplication.current.activate(options: .activateIgnoringOtherApps)
     }
     
     func quit() {

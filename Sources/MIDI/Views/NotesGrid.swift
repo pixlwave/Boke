@@ -36,7 +36,7 @@ struct NotesGrid: View {
             ForEach(0..<4) { row in
                 HStack(spacing: 5) {
                     let startIndex = row * 4
-                    ForEach(startIndex..<(startIndex + 4)) { column in
+                    ForEach(startIndex..<(startIndex + 4), id: \.self) { column in
                         NoteCell(note: notes[column])
                     }
                 }
