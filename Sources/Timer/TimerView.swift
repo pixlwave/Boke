@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TimerView: View {
-    @ObservedObject private var system = System.client
+    @Bindable private var system = System.client
     
     var body: some View {
         Form {
@@ -36,7 +36,7 @@ struct TimerView: View {
                     Text("Boot date: \(system.bootDate?.description ?? "nil")")
                     Text("Wake date: \(system.wakeDate?.description ?? "nil")")
                     Text("Unlock date: \(system.screenWakeDate?.description ?? "nil")")
-                    Text("Time awake: \(system.timeAwake().formatted ?? "Error")")
+                    Text("Time awake: \(system.timeAwake.formatted ?? "Error")")
                 }
             }
             .foregroundColor(.secondary)

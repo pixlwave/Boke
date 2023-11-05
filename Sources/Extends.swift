@@ -38,8 +38,6 @@ extension Process {
         process.waitUntilExit()
         
         let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        let outputString = NSString(data: outputData, encoding: String.Encoding.utf8.rawValue)
-        
-        return outputString as String?
+        return String(data: outputData, encoding: .utf8)
     }
 }

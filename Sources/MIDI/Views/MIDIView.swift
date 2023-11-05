@@ -2,7 +2,7 @@ import SwiftUI
 import Carbon.HIToolbox
 
 struct MIDIView: View {
-    @EnvironmentObject var mapper: InputMapper
+    @Environment(InputMapper.self) private var mapper
     
     var body: some View {
         VStack {

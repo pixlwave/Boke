@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct MainMenu: Scene {
-    @ObservedObject private var system = System.client
-    @ObservedObject private var network = Network.client
-    @ObservedObject private var inputMapper = InputMapper.shared
+    private let system = System.client
+    private let network = Network.client
+    private let inputMapper = InputMapper.shared
     
     var body: some Scene {
         MenuBarExtra {
@@ -44,7 +44,7 @@ struct MainMenu: Scene {
     }
     
     var timeRemaining: String {
-        let timeRemaining = System.client.timeRemaining()
+        let timeRemaining = System.client.timeRemaining
         
         if timeRemaining > 0 {
             return "\(timeRemaining.formatted ?? "Some time") remaining"

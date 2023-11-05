@@ -2,12 +2,12 @@ import AppKit
 import Carbon.HIToolbox
 import Combine
 
-class InputMapper: NSObject, ObservableObject {
+@Observable class InputMapper: NSObject {
     static var shared: InputMapper = InputMapper()
     
-    @Published var jitsi = ControllableApp(bundleIdentifier: "org.jitsi.jitsi-meet", processIdentifier: nil)
-    @Published var elementCall = ControllableApp(bundleIdentifier: "uk.pixlwave.ElementCall", processIdentifier: nil)
-    @Published var lastMidi: UInt8?
+    private(set) var jitsi = ControllableApp(bundleIdentifier: "org.jitsi.jitsi-meet", processIdentifier: nil)
+    private(set) var elementCall = ControllableApp(bundleIdentifier: "uk.pixlwave.ElementCall", processIdentifier: nil)
+    private(set) var lastMidi: UInt8?
     
     private var cancellables = [AnyCancellable]()
     

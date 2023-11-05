@@ -1,10 +1,10 @@
 import Foundation
 
-class Network: ObservableObject {
+@Observable class Network {
     static let client = Network()
     
-    @Published private(set) var proxyEnabled = false
-    @Published private(set) var firewallEnabled = false
+    private(set) var proxyEnabled = false
+    private(set) var firewallEnabled = false
     
     private init() {
         updateProxyState()

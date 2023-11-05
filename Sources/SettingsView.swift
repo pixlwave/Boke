@@ -9,7 +9,7 @@ struct SettingsView: View {
                 .tabItem { Label("Timer", systemImage: "timer") }
                 .tag(Tab.timer)
             MIDIView()
-                .environmentObject(InputMapper.shared)
+                .environment(InputMapper.shared)
                 .tabItem { Label("Jitsi MIDI", systemImage: "pianokeys") }
                 .tag(Tab.midi)
         }

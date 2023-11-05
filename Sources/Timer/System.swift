@@ -1,31 +1,60 @@
 import UserNotifications
 
-class System: ObservableObject {
+@Observable class System {
     static let client = System()
     
+    /// The timer driving all updates.
     var timer: Timer?
+    /// How often to recalculate the amount of screen time.
     var updateFrequency = TimeInterval(60)
     
-    @Published var alertTime = UserDefaults.standard.object(forKey: "alertTime") as? Double ?? TimeInterval(3600) {
+    /// The amount of screen time to allow before triggering the first notification.
+    var alertTime = UserDefaults.standard.object(forKey: "alertTime") as? Double ?? TimeInterval(3600) {
         didSet { UserDefaults.standard.set(alertTime, forKey: "alertTime") }
     }
-    @Published var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
+    /// The amount of idle time to wait before resetting the timer.
+    var resetTime = UserDefaults.standard.object(forKey: "resetTime") as? Double ?? TimeInterval(120) {
         didSet { UserDefaults.standard.set(resetTime, forKey: "resetTime") }
     }
-    @Published var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
+    /// How regularly notifications should be posted after ``alertTime`` has been exceeded.
+    var notificationFrequency = UserDefaults.standard.object(forKey: "notificationFrequency") as? Int ?? 5 {
         didSet { UserDefaults.standard.set(notificationFrequency, forKey: "notificationFrequency") }
     }
-    @Published var makesSound = UserDefaults.standard.object(forKey: "makesSound") as? Bool ?? false {
+    /// Whether or not notifications should be noisy.
+    var makesSound = UserDefaults.standard.object(forKey: "makesSound") as? Bool ?? false {
         didSet { UserDefaults.standard.set(makesSound, forKey: "makesSound") }
     }
     
-    var bootDate: Date? { return Sysctl.date(for: "kern.boottime") }
-    var wakeDate: Date? { return Sysctl.date(for: "kern.waketime") }
+    /// The date at which the system was booted.
+    var bootDate: Date? { Sysctl.date(for: "kern.boottime") }
+    /// If the system has been to sleep, the date at which the system was woken up.
+    var wakeDate: Date? { Sysctl.date(for: "kern.waketime") }
+    /// The date at which the screen was last turned off.
     var screenSleepDate: Date?
+    /// If the screen has been turned off, the date at which it was turned on again.
     var screenWakeDate: Date?
     
+    /// The amount of continuous screen time,
+    var timeAwake: TimeInterval { Date.now.timeIntervalSince(startDate) }
+    /// The amount of time until a notification should be posted.
+    var timeRemaining: TimeInterval { alertTime - timeAwake }
+    
+    /// The date that should be used to calculate the amount of screen time.
+    private var startDate: Date {
+        var dates = [Date]()
+        
+        if let bootDate { dates.append(bootDate) }
+        if let wakeDate { dates.append(wakeDate) }
+        if let screenWakeDate { dates.append(screenWakeDate) }
+        
+        dates.sort()
+        
+        guard let mostRecentDate = dates.last else { fatalError("Unable to read times!") }
+        return mostRecentDate
+    }
+    
     private init() {
-        // com.apple.screenIsLocked seeems to get posted when the screen sleeps irrespective of whether it actually locks.
+        // com.apple.screenIsLocked seems to get posted when the screen sleeps irrespective of whether it actually locks.
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidSleep),
                                                             name: NSNotification.Name("com.apple.screenIsLocked"), object: nil)
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(screenDidWake),
@@ -33,21 +62,21 @@ class System: ObservableObject {
         
         timer = makeTimer()
         
-        update()    // remove stale notifications
+        update() // remove stale notifications
     }
     
     @objc func screenDidSleep() {
         timer?.invalidate()
         timer = nil
         
-        screenSleepDate = Date()
+        screenSleepDate = Date.now
     }
     
     @objc func screenDidWake() {
         if timer == nil { timer = makeTimer() }
         
-        if let screenSleepDate = screenSleepDate {
-            let now = Date()
+        if let screenSleepDate {
+            let now = Date.now
             let screenSleepTime = now.timeIntervalSince(screenSleepDate)
             if screenSleepTime > resetTime {
                 screenWakeDate = now
@@ -57,25 +86,8 @@ class System: ObservableObject {
         }
     }
     
-    func timeAwake() -> TimeInterval {
-        var dates = [Date]()
-        
-        if let bootDate = bootDate { dates.append(bootDate) }
-        if let wakeDate = wakeDate { dates.append(wakeDate) }
-        if let screenWakeDate = screenWakeDate { dates.append(screenWakeDate) }
-        
-        dates.sort()
-        
-        guard let mostRecentDate = dates.last else { fatalError("Unable to read times!")}
-        return Date().timeIntervalSince(mostRecentDate)
-    }
-    
-    func timeRemaining() -> TimeInterval {
-        alertTime - timeAwake()
-    }
-    
-    func update() {
-        let time = timeAwake()
+    private func update() {
+        let time = timeAwake
         
         if time > alertTime {
             let minutesPast = Int((time - alertTime) / 60)
@@ -87,7 +99,7 @@ class System: ObservableObject {
         }
     }
     
-    func deliverNotification(for time: TimeInterval) {
+    private func deliverNotification(for time: TimeInterval) {
         let content = UNMutableNotificationContent()
         content.title = time.formatted ?? "ERROR"
         content.subtitle = "of screen time"
@@ -97,11 +109,11 @@ class System: ObservableObject {
         UNUserNotificationCenter.current().add(request)
     }
     
-    func removeAllNotifications() {
+    private func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
     
-    func makeTimer() -> Timer {
+    private func makeTimer() -> Timer {
         Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
             self.update()
         }
