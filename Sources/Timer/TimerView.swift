@@ -33,15 +33,27 @@ struct TimerView: View {
             
             GroupBox {
                 VStack(alignment: .leading) {
-                    Text("Boot date: \(system.bootDate?.description ?? "nil")")
-                    Text("Wake date: \(system.wakeDate?.description ?? "nil")")
-                    Text("Unlock date: \(system.screenWakeDate?.description ?? "nil")")
-                    Text("Time awake: \(system.timeAwake.formatted ?? "Error")")
+                    Text("Boot date: ") + Text(system.bootDate, format: .dateTime)
+                    Text("Wake date: ") + Text(system.wakeDate, format: .dateTime)
+                    Text("Unlock date: ") + Text(system.screenWakeDate, format: .dateTime)
+                    Text("Time awake: \(system.startDate, style: .relative)")
                 }
+                .monospacedDigit()
             }
             .foregroundColor(.secondary)
         }
         .padding(.horizontal)
+    }
+}
+
+// TODO: Implement this with a custom string interpolation.
+private extension Text {
+    init(_ date: Date?, format: Date.FormatStyle) {
+        self = if let date {
+            Text(date, format: format)
+        } else {
+            Text("Unknown")
+        }
     }
 }
 

@@ -34,13 +34,13 @@ import UserNotifications
     /// If the screen has been turned off, the date at which it was turned on again.
     var screenWakeDate: Date?
     
-    /// The amount of continuous screen time,
-    var timeAwake: TimeInterval { Date.now.timeIntervalSince(startDate) }
+    /// The date at which the ``alertTime`` has been exceeded.
+    var alertDate: Date = .now
     /// The amount of time until a notification should be posted.
-    var timeRemaining: TimeInterval { alertTime - timeAwake }
+    var timeRemaining: TimeInterval { alertDate.timeIntervalSinceNow }
     
     /// The date that should be used to calculate the amount of screen time.
-    private var startDate: Date {
+    var startDate: Date {
         var dates = [Date]()
         
         if let bootDate { dates.append(bootDate) }
@@ -87,21 +87,23 @@ import UserNotifications
     }
     
     private func update() {
-        let time = timeAwake
+        alertDate = startDate.addingTimeInterval(alertTime)
+        let timeOver = -timeRemaining
         
-        if time > alertTime {
-            let minutesPast = Int((time - alertTime) / 60)
+        if timeOver > 0 {
+            let screenTime = timeOver + alertTime
+            let minutesPast = Int((screenTime) / 60)
             if minutesPast % notificationFrequency == 0 {
-                deliverNotification(for: time)
+                deliverNotification(for: screenTime)
             }
         } else {
             removeAllNotifications()
         }
     }
     
-    private func deliverNotification(for time: TimeInterval) {
+    private func deliverNotification(for screenTime: TimeInterval) {
         let content = UNMutableNotificationContent()
-        content.title = time.formatted ?? "ERROR"
+        content.title = screenTime.formatted ?? "ERROR"
         content.subtitle = "of screen time"
         content.sound = makesSound ? .default : nil
         let request = UNNotificationRequest(identifier: "timer", content: content, trigger: nil)

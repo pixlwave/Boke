@@ -12,7 +12,9 @@ struct MainMenu: Scene {
             
             Divider()
             
-            Text(timeRemaining) // TODO: Use a Date with a formatter so this updates.
+            Text(timeRemaining)
+            #warning("Dates don't update in the MenuBar?")
+            // Text(system.alertDate, style: .timer)
             
             SettingsLink()
             Button("Quit", action: quit)
@@ -44,7 +46,7 @@ struct MainMenu: Scene {
     }
     
     var timeRemaining: String {
-        let timeRemaining = System.client.timeRemaining
+        let timeRemaining = system.timeRemaining
         
         if timeRemaining > 0 {
             return "\(timeRemaining.formatted ?? "Some time") remaining"
