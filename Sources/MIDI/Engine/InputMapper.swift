@@ -5,8 +5,12 @@ import Combine
 @Observable class InputMapper: NSObject {
     static var shared: InputMapper = InputMapper()
     
-    private(set) var jitsi = ControllableApp(bundleIdentifier: "org.jitsi.jitsi-meet", processIdentifier: nil)
-    private(set) var elementCall = ControllableApp(bundleIdentifier: "uk.pixlwave.ElementCall", processIdentifier: nil)
+    private(set) var jitsi = ControllableApp(processIdentifier: nil) {
+        $0.bundleIdentifier == "org.jitsi.jitsi-meet"
+    }
+    private(set) var elementCall = ControllableApp(processIdentifier: nil) {
+        $0.bundleIdentifier?.starts(with: "com.apple.Safari.WebApp") == true && $0.localizedName == "Element Call"
+    }
     private(set) var lastMidi: UInt8?
     
     private var cancellables = [AnyCancellable]()
@@ -66,10 +70,10 @@ import Combine
     func didLaunchApplication(notification: Notification) {
         guard let app = application(from: notification) else { return }
         
-        if app.bundleIdentifier == jitsi.bundleIdentifier {
+        if jitsi.matchesRunningApplication(app) {
             jitsi.processIdentifier = app.processIdentifier
             midi.keybowStart()  // light up the keybow's leds
-        } else if app.bundleIdentifier == elementCall.bundleIdentifier && jitsi.processIdentifier == nil {
+        } else if elementCall.matchesRunningApplication(app) && jitsi.processIdentifier == nil {
             elementCall.processIdentifier = app.processIdentifier
             midi.keybowContinue()   // light up the keybow's leds
         }
@@ -78,7 +82,7 @@ import Combine
     func didTerminateApplication(notification: Notification) {
         guard let app = application(from: notification) else { return }
         
-        if app.bundleIdentifier == jitsi.bundleIdentifier {
+        if jitsi.matchesRunningApplication(app) {
             jitsi.processIdentifier = nil
             
             if elementCall.processIdentifier != nil {
@@ -86,7 +90,7 @@ import Combine
             } else {
                 midi.keybowStop()   // turn off the keybow's leds
             }
-        } else if app.bundleIdentifier == elementCall.bundleIdentifier {
+        } else if elementCall.matchesRunningApplication(app) {
             elementCall.processIdentifier = nil
             
             if jitsi.processIdentifier == nil {

@@ -1,11 +1,8 @@
 import AppKit
 
 struct ControllableApp {
-    let bundleIdentifier: String
+    /// The app's process ID if running, otherwise `nil`.
     var processIdentifier: pid_t?
-    
-    mutating func refreshProcessIdentifier() {
-        let app = NSRunningApplication.runningApplications(withBundleIdentifier: bundleIdentifier).first
-        processIdentifier = app?.processIdentifier
-    }
+    /// A closure called to determine whether a particular instance of an app is this controllable app.
+    let matchesRunningApplication: (NSRunningApplication) -> Bool
 }
