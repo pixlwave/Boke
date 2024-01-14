@@ -1,18 +1,19 @@
 import AppKit
 
 protocol Command {
-    var controlsRunningApp: Bool { get }
-    func run(keyDown: Bool, for processIdentifier: pid_t)
+    /// Runs the command if required based on the parameters
+    /// - Parameters:
+    ///   - keyDown: Whether the trigger is a key down event.
+    ///   - processIdentifier: The currently controlled process ID, `nil` if no applicable processes are running.
+    func run(keyDown: Bool, for processIdentifier: pid_t?)
 }
 
 
 struct KeyCommand: Command {
-    var controlsRunningApp = true
-    
     let key: Int
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
-        guard keyDown else { return }
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
+        guard let processIdentifier, keyDown else { return }
         
         CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(key), keyDown: true)?.postToPid(processIdentifier)
         CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(key), keyDown: false)?.postToPid(processIdentifier)
@@ -21,11 +22,10 @@ struct KeyCommand: Command {
 
 
 struct MomentaryKeyCommand: Command {
-    let controlsRunningApp = true
-    
     let key: Int
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
+        guard let processIdentifier else { return }
         if keyDown {
             CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(key), keyDown: true)?.postToPid(processIdentifier)
         } else {
@@ -36,13 +36,11 @@ struct MomentaryKeyCommand: Command {
 
 
 struct ModifiedKeyCommand: Command {
-    let controlsRunningApp = true
-    
     let key: Int
     var modifierFlags: CGEventFlags = .maskAlternate
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
-        guard keyDown else { return }
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
+        guard let processIdentifier, keyDown else { return }
         
         let events = [
             CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(key), keyDown: true),
@@ -58,11 +56,9 @@ struct ModifiedKeyCommand: Command {
 
 
 struct OpenURLCommand: Command {
-    let controlsRunningApp = false
-    
     let defaultsKey: String
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
         guard
             keyDown,
             let url = UserDefaults.standard.url(forKey: defaultsKey)
@@ -74,11 +70,9 @@ struct OpenURLCommand: Command {
 
 
 struct OpenAppCommand: Command {
-    let controlsRunningApp = false
-    
     let bundleID: String
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
         guard keyDown else { return }
         
         let task = Process()
@@ -92,12 +86,10 @@ struct OpenAppCommand: Command {
 // MARK: - WIP
 
 class SpecialKeyCommand: Command {
-    let controlsRunningApp = false
-    
     private var keyDownTimer: Timer?
     private var wasLongPress = false
     
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
+    func run(keyDown: Bool, for processIdentifier: pid_t?) {
         DispatchQueue.main.async { [self] in
             if keyDown {
                 guard self.keyDownTimer == nil else { return }
@@ -126,16 +118,5 @@ class SpecialKeyCommand: Command {
     @objc func didFinishLongPress() {
         wasLongPress = true
         self.openApp(bundleID: "uk.pixlwave.ElementCall")
-    }
-}
-
-
-struct ShellCommand: Command {
-    let controlsRunningApp = false
-    
-    let command: String
-    
-    func run(keyDown: Bool, for processIdentifier: pid_t) {
-        guard keyDown else { return }
     }
 }

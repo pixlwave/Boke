@@ -112,16 +112,6 @@ extension InputMapper: MIDIDelegate {
         
         guard let command = keymap[note] else { return }
         
-        #warning("Should process ID be optional?")
-        if !command.controlsRunningApp {
-            command.run(keyDown: isOn, for: 0)
-            return
-        }
-        
-        if let jitsiProcessIdentifier = jitsi.processIdentifier {
-            command.run(keyDown: isOn, for: jitsiProcessIdentifier)
-        } else if let elementCallProcessIdentifier = elementCall.processIdentifier {
-            command.run(keyDown: isOn, for: elementCallProcessIdentifier)
-        }
+        command.run(keyDown: isOn, for: jitsi.processIdentifier ?? elementCall.processIdentifier)
     }
 }
