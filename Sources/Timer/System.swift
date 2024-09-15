@@ -1,6 +1,6 @@
 import UserNotifications
 
-@Observable class System {
+@Observable @MainActor class System {
     static let client = System()
     
     /// The timer driving all updates.
@@ -116,8 +116,9 @@ import UserNotifications
     }
     
     private func makeTimer() -> Timer {
-        Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
-            self.update()
+        Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { [weak self] _ in
+            #warning("Can this be done without a timer?")
+            Task { @MainActor in self?.update() }
         }
     }
 }

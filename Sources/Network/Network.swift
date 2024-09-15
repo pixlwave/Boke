@@ -1,6 +1,6 @@
 import Foundation
 
-@Observable class Network {
+@Observable @MainActor class Network {
     static let client = Network()
     
     private(set) var proxyEnabled = false

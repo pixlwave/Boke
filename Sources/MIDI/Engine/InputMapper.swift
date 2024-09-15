@@ -2,7 +2,7 @@ import AppKit
 import Carbon.HIToolbox
 import Combine
 
-@Observable class InputMapper: NSObject {
+@Observable @MainActor class InputMapper: NSObject {
     static var shared: InputMapper = InputMapper()
     
     private(set) var jitsi = ControllableApp(processIdentifier: nil) {
@@ -12,6 +12,8 @@ import Combine
         $0.bundleIdentifier?.starts(with: "com.apple.Safari.WebApp") == true && $0.localizedName == "Element Call"
     }
     private(set) var lastMidi: UInt8?
+    private var midiStreamTask: Task<Void, Never>?
+    private let midiContinuation: AsyncStream<(note: UInt8, isOn: Bool)>.Continuation
     
     private var cancellables = [AnyCancellable]()
     
@@ -43,7 +45,21 @@ import Combine
     var tickTimer: AnyCancellable?
     
     private override init() {
+        let (midiStream, midiContinuation) = AsyncStream<(note: UInt8, isOn: Bool)>.makeStream()
+        self.midiContinuation = midiContinuation
+        
         super.init()
+        
+        midiStreamTask = Task { [weak self] in
+            for await (note, isOn) in midiStream {
+                guard let self else { return }
+                
+                if isOn { lastMidi = note }
+                
+                guard let command = keymap[note] else { return }
+                command.run(keyDown: isOn, for: jitsi.processIdentifier ?? elementCall.processIdentifier)
+            }
+        }
         
         midi.delegate = self
         
@@ -107,11 +123,7 @@ import Combine
 
 // MARK: - MidiDelegate
 extension InputMapper: MIDIDelegate {
-    func midi(note: UInt8, isOn: Bool) {
-        DispatchQueue.main.async { if isOn { self.lastMidi = note } }
-        
-        guard let command = keymap[note] else { return }
-        
-        command.run(keyDown: isOn, for: jitsi.processIdentifier ?? elementCall.processIdentifier)
+    nonisolated func midi(note: UInt8, isOn: Bool) {
+        midiContinuation.yield((note: note, isOn: isOn))
     }
 }

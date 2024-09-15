@@ -7,10 +7,10 @@ struct MIDIView: View {
     var body: some View {
         VStack {
             HStack(alignment: .firstTextBaseline) {
-                Text("Jitsi Electron:")
+                Text("Element Call:")
                     .font(.title.weight(.semibold))
                 
-                Text(mapper.jitsi.processIdentifier != nil ? "Running" : "Not Running")
+                Text(mapper.elementCall.processIdentifier != nil ? "Running" : "Not Running")
                     .font(.title.smallCaps())
                 
                 Spacer()
