@@ -42,7 +42,7 @@ struct TimerView: View {
             }
             .foregroundColor(.secondary)
         }
-        .padding(.horizontal)
+        .padding()
     }
 }
 

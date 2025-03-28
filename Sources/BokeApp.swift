@@ -7,7 +7,6 @@ struct BokeApp: App {
         
         Settings {
             SettingsView()
-                .frame(minWidth: 585, minHeight: 300)
         }
         .defaultSize(width: 585, height: 300)
     }

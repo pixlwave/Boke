@@ -43,3 +43,8 @@ struct MIDIView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
+
+#Preview {
+    MIDIView()
+        .environment(InputMapper.shared)
+}
