@@ -13,8 +13,6 @@ struct MainMenu: Scene {
             Divider()
             
             Text(timeRemaining)
-            #warning("Dates don't update in the MenuBar?")
-            // Text(system.alertDate, style: .timer)
             
             SettingsLink()
             Button("Quit", action: quit)
