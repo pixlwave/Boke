@@ -18,16 +18,16 @@ struct NoteCell: View {
         }
         .frame(width: 90, height: 90)
         .overlay(Text(note.note).padding(5), alignment: .bottom)
-        .background(note.color.opacity(0.5))
-        .clipShape(RoundedRectangle(cornerRadius: 5))
-        .overlay(
-            RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.black.opacity(0.2))
-        )
+        .background(note.color.opacity(0.5), in: shape)
+        .overlay { shape.stroke(Color.black.opacity(0.2)) }
         .onTapGesture(perform: didTapCell)
         .popover(isPresented: $isPresentingPopover) {
             LinkEditor()
         }
+    }
+    
+    var shape: RoundedRectangle {
+        RoundedRectangle(cornerRadius: 5)
     }
     
     func didTapCell() {
