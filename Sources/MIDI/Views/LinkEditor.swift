@@ -1,23 +1,23 @@
 import SwiftUI
 
 struct LinkEditor: View {
-    private static let jitsiScheme = "jitsi-meet://"
+    private static let elementCallURLString = "https://call.element.io/"
     static var defaultsKey = ""
     
     @AppStorage(Self.defaultsKey) private var link: URL?
     
-    @State private var urlString = Self.jitsiScheme
+    @State private var urlString = Self.elementCallURLString
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Enter URL")
                 .font(.headline)
-            TextField(Self.jitsiScheme, text: $urlString, onCommit: setURL)
+            TextField(Self.elementCallURLString, text: $urlString, onCommit: setURL)
                 .frame(minWidth: 200)
         }
         .padding()
         .onAppear {
-            urlString = link?.absoluteString ?? Self.jitsiScheme
+            urlString = link?.absoluteString ?? Self.elementCallURLString
         }
     }
     

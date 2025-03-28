@@ -69,22 +69,6 @@ struct OpenURLCommand: Command {
 }
 
 
-struct OpenAppCommand: Command {
-    let bundleID: String
-    
-    func run(keyDown: Bool, for processIdentifier: pid_t?) {
-        guard keyDown else { return }
-        
-        let task = Process()
-        task.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-        task.arguments = ["-b", bundleID]
-        try? task.run()
-        task.waitUntilExit()
-    }
-}
-
-// MARK: - WIP
-
 class SpecialKeyCommand: Command {
     private var keyDownTask: Task<Void, Error>?
     private var wasLongPress = false
@@ -103,21 +87,29 @@ class SpecialKeyCommand: Command {
             if wasLongPress {
                 wasLongPress = false
             } else {
-                openApp(bundleID: "org.jitsi.jitsi-meet")
+                let elementCall = URL.homeDirectory.appendingPathComponent("Applications/Element Call.app")
+                openApp(path: elementCall.path(percentEncoded: false))
             }
         }
     }
     
-    func openApp(bundleID: String) {
-        let task = Process()
-        task.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-        task.arguments = ["-b", bundleID]
-        try? task.run()
-        task.waitUntilExit()
+    private func didFinishLongPress() {
+        wasLongPress = true
     }
     
-    @objc func didFinishLongPress() {
-        wasLongPress = true
-        openApp(bundleID: "uk.pixlwave.ElementCall")
+    private func openApp(path: String) {
+        open(arguments: [path])
+    }
+    
+    private func openApp(bundleID: String) {
+        open(arguments: ["-b", bundleID])
+    }
+    
+    private func open(arguments: [String]) {
+        let task = Process()
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/open")
+        task.arguments = arguments
+        try? task.run()
+        task.waitUntilExit()
     }
 }

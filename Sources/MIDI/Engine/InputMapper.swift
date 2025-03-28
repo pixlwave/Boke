@@ -5,9 +5,6 @@ import Combine
 @Observable @MainActor class InputMapper: NSObject {
     static var shared: InputMapper = InputMapper()
     
-    private(set) var jitsi = ControllableApp(processIdentifier: nil) {
-        $0.bundleIdentifier == "org.jitsi.jitsi-meet"
-    }
     private(set) var elementCall = ControllableApp(processIdentifier: nil) {
         $0.bundleIdentifier?.starts(with: "com.apple.Safari.WebApp") == true && $0.localizedName == "Element Call"
     }
@@ -20,19 +17,19 @@ import Combine
     let midi = MIDIManager()
     
     let keymap: [UInt8: Command] = [
-        36: ModifiedKeyCommand(key: kVK_ANSI_C),    // reaction - clap
+        36: KeyCommand(key: kVK_ANSI_3),    // reaction - clap
         37: KeyCommand(key: kVK_ANSI_V),            // toggle video
         38: KeyCommand(key: kVK_ANSI_M),            // toggle mic
-        39: MomentaryKeyCommand(key: kVK_Space),    // push to talk
+        39: KeyCommand(key: kVK_Space),    // push to talk
         
         40: ModifiedKeyCommand(key: kVK_ANSI_L),    // reaction - laugh
         41: KeyCommand(key: kVK_ANSI_D),            // screen sharing
         42: KeyCommand(key: kVK_ANSI_F),            // toggle thumbnails
         43: KeyCommand(key: kVK_ANSI_W),            // tile view
         
-        44: ModifiedKeyCommand(key: kVK_ANSI_T),    // reaction - thumbs up
+        44: KeyCommand(key: kVK_ANSI_1),    // reaction - thumbs up
         45: ModifiedKeyCommand(key: kVK_ANSI_O),    // reaction - surprised
-        46: KeyCommand(key: kVK_ANSI_R),            // raise hand
+        46: KeyCommand(key: kVK_ANSI_H),            // raise hand
         47: ModifiedKeyCommand(key: kVK_ANSI_Q,     // end call (quit)
                                modifierFlags: .maskCommand),
         
@@ -57,7 +54,7 @@ import Combine
                 if isOn { lastMidi = note }
                 
                 guard let command = keymap[note] else { return }
-                command.run(keyDown: isOn, for: jitsi.processIdentifier ?? elementCall.processIdentifier)
+                command.run(keyDown: isOn, for: elementCall.processIdentifier)
             }
         }
         
@@ -75,10 +72,8 @@ import Combine
         tickTimer = Timer.publish(every: 5, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                if self.jitsi.processIdentifier != nil {
+                if self.elementCall.processIdentifier != nil {
                     self.midi.keybowStart()
-                } else if self.elementCall.processIdentifier != nil {
-                    self.midi.keybowContinue()
                 }
             }
     }
@@ -86,32 +81,18 @@ import Combine
     func didLaunchApplication(notification: Notification) {
         guard let app = application(from: notification) else { return }
         
-        if jitsi.matchesRunningApplication(app) {
-            jitsi.processIdentifier = app.processIdentifier
-            midi.keybowStart()  // light up the keybow's leds
-        } else if elementCall.matchesRunningApplication(app) && jitsi.processIdentifier == nil {
+        if elementCall.matchesRunningApplication(app) {
             elementCall.processIdentifier = app.processIdentifier
-            midi.keybowContinue()   // light up the keybow's leds
+            midi.keybowStart()   // light up the keybow's leds
         }
     }
     
     func didTerminateApplication(notification: Notification) {
         guard let app = application(from: notification) else { return }
         
-        if jitsi.matchesRunningApplication(app) {
-            jitsi.processIdentifier = nil
-            
-            if elementCall.processIdentifier != nil {
-                midi.keybowContinue()   // switch to the element call layout
-            } else {
-                midi.keybowStop()   // turn off the keybow's leds
-            }
-        } else if elementCall.matchesRunningApplication(app) {
+        if elementCall.matchesRunningApplication(app) {
             elementCall.processIdentifier = nil
-            
-            if jitsi.processIdentifier == nil {
-                midi.keybowStop()   // turn off the keybow's leds
-            }
+            midi.keybowStop()   // turn off the keybow's leds
         }
     }
     
