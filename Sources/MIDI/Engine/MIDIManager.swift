@@ -54,6 +54,7 @@ class MIDIManager {
 extension MIDIManager: MIDIListener {
     func receivedMIDISetupChange() {
         print("Setup Changed")
+        reset()
     }
     
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
